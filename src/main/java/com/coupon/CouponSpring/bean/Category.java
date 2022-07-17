@@ -1,20 +1,17 @@
 package com.coupon.CouponSpring.bean;
 
-import lombok.NoArgsConstructor;
+public enum Category {
+    Food(1),
+    Electricity(2),
+    Restaurant(3),
+    Vacation(4);
 
-import javax.persistence.*;
+    private final int id;
+    Category(int id) {
+        this.id = id;
+    }
 
-@Entity
-@Table(name = "categories")
-@NoArgsConstructor
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    private String name;
-
-    public Category(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
     }
 }

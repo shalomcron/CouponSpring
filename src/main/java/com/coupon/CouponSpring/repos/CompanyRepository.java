@@ -1,39 +1,11 @@
 package com.coupon.CouponSpring.repos;
 
-public class CompanyRepository {
+import com.coupon.CouponSpring.bean.Company;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
 /*
-    public class CouponDAOImpl implements CouponDAO {
-        private static final CouponDAOImpl instance = new CouponDAOImpl();
-
-        private static final String QUERY_INSERT = "INSERT INTO `coupone-bhp-386`.`coupons` " +
-                "(`ID_COMPANY`, `ID_CATEGORY`, `TITLE`, `DESCRIPTION`, `DATE_START`, `DATE_END`, `AMOUNT`, `PRICE`, `IMAGE`) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        private static final String QUERY_GET_ALL = "SELECT * FROM `coupone-bhp-386`.coupons";
-        private static final String QUERY_GET_COMPANY_COUPONS = "SELECT * FROM `coupone-bhp-386`.coupons " +
-                "WHERE (ID_COMPANY = ?) ORDER BY ID";
-        private static final String QUERY_GET_COMPANY_COUPONS_CATEGORY = "SELECT * FROM `coupone-bhp-386`.coupons " +
-                "WHERE (ID_COMPANY = ? AND ID_CATEGORY = ?) ORDER BY ID";
-        private static final String QUERY_GET_COMPANY_COUPONS_MAX_PRICE = "SELECT * FROM `coupone-bhp-386`.coupons " +
-                "WHERE (ID_COMPANY = ? AND PRICE <= ?) ORDER BY ID";
-        private static final String QUERY_GET_ONE = "SELECT * FROM `coupone-bhp-386`.coupons WHERE id=?";
-
-        private static final String QUERY_UPDATE = "UPDATE `coupone-bhp-386`.`coupons` " +
-                "SET `ID_COMPANY` = ?, `ID_CATEGORY` = ?, `TITLE` = ?, `DESCRIPTION` = ?, " +
-                "`DATE_START` = ?, `DATE_END` = ?, `AMOUNT` = ?, `PRICE` = ?, `IMAGE` = ? WHERE (`ID` = ?);";
-        private static final String QUERY_DELETE = "DELETE FROM `coupone-bhp-386`.`coupons` WHERE (`ID` = ?)";
-
-        private static final String QUERY_IS_EXIST_BY_TITLE = "select exists (SELECT * FROM `coupone-bhp-386`.coupons " +
-                "WHERE (`ID_COMPANY` = ? and `TITLE` = ?) ) as RES;";
-
-
-        private CouponDAOImpl() {}
-
-        public static CouponDAOImpl getInstance() {
-            return instance;
-        }
-
         @Override
         public void add(Coupon coupon) throws JDBCException {
             Map<Integer, Object> params = new HashMap<>();
@@ -139,3 +111,38 @@ public class CompanyRepository {
     }
 */
 }
+
+/*
+    public class CouponDAOImpl implements CouponDAO {
+        private static final CouponDAOImpl instance = new CouponDAOImpl();
+
+        private static final String QUERY_INSERT = "INSERT INTO `coupone-bhp-386`.`coupons` " +
+                "(`ID_COMPANY`, `ID_CATEGORY`, `TITLE`, `DESCRIPTION`, `DATE_START`, `DATE_END`, `AMOUNT`, `PRICE`, `IMAGE`) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        private static final String QUERY_GET_ALL = "SELECT * FROM `coupone-bhp-386`.coupons";
+        private static final String QUERY_GET_COMPANY_COUPONS = "SELECT * FROM `coupone-bhp-386`.coupons " +
+                "WHERE (ID_COMPANY = ?) ORDER BY ID";
+        private static final String QUERY_GET_COMPANY_COUPONS_CATEGORY = "SELECT * FROM `coupone-bhp-386`.coupons " +
+                "WHERE (ID_COMPANY = ? AND ID_CATEGORY = ?) ORDER BY ID";
+        private static final String QUERY_GET_COMPANY_COUPONS_MAX_PRICE = "SELECT * FROM `coupone-bhp-386`.coupons " +
+                "WHERE (ID_COMPANY = ? AND PRICE <= ?) ORDER BY ID";
+        private static final String QUERY_GET_ONE = "SELECT * FROM `coupone-bhp-386`.coupons WHERE id=?";
+
+        private static final String QUERY_UPDATE = "UPDATE `coupone-bhp-386`.`coupons` " +
+                "SET `ID_COMPANY` = ?, `ID_CATEGORY` = ?, `TITLE` = ?, `DESCRIPTION` = ?, " +
+                "`DATE_START` = ?, `DATE_END` = ?, `AMOUNT` = ?, `PRICE` = ?, `IMAGE` = ? WHERE (`ID` = ?);";
+        private static final String QUERY_DELETE = "DELETE FROM `coupone-bhp-386`.`coupons` WHERE (`ID` = ?)";
+
+        private static final String QUERY_IS_EXIST_BY_TITLE = "select exists (SELECT * FROM `coupone-bhp-386`.coupons " +
+                "WHERE (`ID_COMPANY` = ? and `TITLE` = ?) ) as RES;";
+
+
+        private CouponDAOImpl() {}
+
+        public static CouponDAOImpl getInstance() {
+            return instance;
+        }
+
+
+ */
