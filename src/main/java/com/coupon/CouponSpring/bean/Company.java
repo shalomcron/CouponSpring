@@ -1,14 +1,13 @@
 package com.coupon.CouponSpring.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "Companies")
+@Table(name = "companies")
 @Data
 // TODO: Warning:(12, 1)
 //  Using @Data for JPA entities is not recommended. It can cause severe performance and memory consumption issues.
@@ -22,5 +21,8 @@ public class Company {
     private String name;
     private String email;
     private String password;
-    // private final List<Coupon> coupons = new ArrayList<>();
+
+    @OneToMany
+    @Singular
+    private final List<Coupon> coupons = new ArrayList<>();
 }
