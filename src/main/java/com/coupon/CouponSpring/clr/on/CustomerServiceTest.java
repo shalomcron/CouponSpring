@@ -26,7 +26,7 @@ public class CustomerServiceTest implements CommandLineRunner {
 
         Print.printSubCaption("Company login");
         boolean isLogin3 = companyService.login("", "");
-        boolean isLogin4 = companyService.login("admin", "admin");
+        boolean isLogin4 = companyService.login("FOX-mail@gmail.com", "FOX-password");
         System.out.println("isLogin3:" + isLogin3);
         System.out.println("isLogin4:" + isLogin4);
 
