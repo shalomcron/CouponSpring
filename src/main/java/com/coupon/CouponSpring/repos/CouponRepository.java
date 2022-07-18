@@ -1,6 +1,10 @@
 package com.coupon.CouponSpring.repos;
 
-public class CouponRepository {
+import com.coupon.CouponSpring.bean.Coupon;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface CouponRepository extends JpaRepository<Coupon, Integer> {
     /**
      package dao.coupon;
 

@@ -9,8 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "companies")
 @Data
-// TODO: Warning:(12, 1)
-//  Using @Data for JPA entities is not recommended. It can cause severe performance and memory consumption issues.
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -18,11 +16,16 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(length = 100, nullable = false)
     private String name;
+    @Column(length = 30, nullable = false)
     private String email;
+    @Column(length = 30, nullable = false)
     private String password;
 
-    @OneToMany
+    @OneToMany(
+            cascade = CascadeType.PERSIST
+    )
     @Singular
-    private final List<Coupon> coupons = new ArrayList<>();
+    private List<Coupon> coupons = new ArrayList<>();
 }

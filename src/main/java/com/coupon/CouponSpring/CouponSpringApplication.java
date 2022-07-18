@@ -8,7 +8,7 @@ public class CouponSpringApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CouponSpringApplication.class, args);
-		System.out.println("IM HERE");
+		System.out.println("END SpringApplication.run");
 	}
 
 }

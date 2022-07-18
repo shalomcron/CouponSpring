@@ -1,9 +1,7 @@
 package com.coupon.CouponSpring.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -18,9 +16,16 @@ public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int companyId;
+
+    // @JoinColumn(name = "company_id")
+    // TODO: USE JoinColumn?
+    @ManyToOne
+    @ToString.Exclude
+    @JsonIgnore
+    Company company;
     @Enumerated(EnumType.STRING)
     private Category category;
+    @Column(length = 100, nullable = false)
     private String title;
     private String description;
     private Date startDate;
