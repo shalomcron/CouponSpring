@@ -4,6 +4,7 @@ package com.coupon.CouponSpring.utils;
 import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
+import com.coupon.CouponSpring.bean.Customer;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -33,15 +34,13 @@ public class BeanFactoryUtils {
                 .build();
     }
 
-    public static Coupon getCoupon2() {
-        return Coupon.builder()
-                // .companyId(1)
-                .description("des2")
-                .title("title2")
-                .amount(2)
-                .category(Category.Electricity)
-                .startDate(Date.valueOf(LocalDate.now()))
-                .endDate(Date.valueOf(LocalDate.now().plus(1, ChronoUnit.MONTHS)))
+
+    public static Customer getCustomer(String name) {
+        return Customer.builder()
+                .firsName(name)
+                .lastName(name)
+                .email(name + "-" + "mail@gmail.com")
+                .password(name + "-" + "password")
                 .build();
     }
 }

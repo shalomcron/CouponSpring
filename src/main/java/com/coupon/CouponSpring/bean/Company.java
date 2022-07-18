@@ -24,6 +24,7 @@ public class Company {
     private String password;
 
     @OneToMany(
+            mappedBy = "company",
             cascade = CascadeType.PERSIST
     )
     @Singular

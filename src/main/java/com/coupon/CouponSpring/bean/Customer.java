@@ -1,9 +1,6 @@
 package com.coupon.CouponSpring.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Singular;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +10,7 @@ import java.util.List;
 @Table(name = "customer")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
 public class Customer {
     @Id
@@ -27,7 +25,8 @@ public class Customer {
     @Column(length = 30, nullable = false)
     private String password;
 
-    @ManyToMany(mappedBy = "company", cascade = CascadeType.PERSIST)
+    @ManyToMany()
+    // cascade = CascadeType.PERSIST
     @Singular
-    private final List<Coupon> coupons = new ArrayList<>();
+    private List<Coupon> coupons = new ArrayList<>();
 }

@@ -1,4 +1,4 @@
-package com.coupon.CouponSpring.clr;
+package com.coupon.CouponSpring.clr.on;
 
 import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-@Component
+// @Component
 @Order(1)
 public class CompanyReposTest implements CommandLineRunner {
 
@@ -46,7 +46,7 @@ public class CompanyReposTest implements CommandLineRunner {
         Coupon taraCoupon2 = BeanFactoryUtils.getCoupon(taraCompany, 2, 2, Category.Food, 2);
         taraCompany.setCoupons(Arrays.asList(taraCoupon1, taraCoupon2));
 
-        companyRepository.saveAll(Arrays.asList(taraCompany, tnuvaCompany, foxCompany));
+        companyRepository.saveAll(Arrays.asList(foxCompany, tnuvaCompany, taraCompany));
 
         Print.printSubCaption("print all companies");
         companyRepository.findAll().forEach(System.out::println);
