@@ -1,4 +1,4 @@
-package com.coupon.CouponSpring.services;
+package com.coupon.CouponSpring.services.login;
 
 public enum ClientType {
     Admin,
