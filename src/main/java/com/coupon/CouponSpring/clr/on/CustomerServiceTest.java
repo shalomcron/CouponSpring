@@ -2,6 +2,7 @@ package com.coupon.CouponSpring.clr.on;
 
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyService;
+import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.utils.Print;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +15,8 @@ public class CustomerServiceTest implements CommandLineRunner {
     AdminService adminService;
     @Autowired
     CompanyService companyService;
+    @Autowired
+    CustomerService customerService;
 
     @Override
     public void run(String... args) {
@@ -29,6 +32,12 @@ public class CustomerServiceTest implements CommandLineRunner {
         boolean isLogin4 = companyService.login("FOX-mail@gmail.com", "FOX-password");
         System.out.println("isLogin3:" + isLogin3);
         System.out.println("isLogin4:" + isLogin4);
+
+        Print.printSubCaption("Customer login");
+        boolean isLogin5 = customerService.login("", "");
+        boolean isLogin6 = customerService.login("Yuval-mail@gmail.com", "Yuval-password");
+        System.out.println("isLogin5:" + isLogin5);
+        System.out.println("isLogin6:" + isLogin6);
 
         Print.printCaption("End customer service test");
     }

@@ -4,7 +4,7 @@ import com.coupon.CouponSpring.bean.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
-    boolean existsByNameAndEmail(String email, String password);
+    boolean existsByEmailAndPassword(String email, String password);
 
 /*
         @Override

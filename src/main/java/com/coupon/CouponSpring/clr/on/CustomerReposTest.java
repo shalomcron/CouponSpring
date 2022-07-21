@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-// @Component
+@Component
 @Order(2)
 public class CustomerReposTest implements CommandLineRunner {
 
