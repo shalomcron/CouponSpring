@@ -30,7 +30,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start companyTests");
         companyTests();
         Print.printMainCaption("Start customerTests");
-        // customerTests();
+        customerTests();
         Print.printMainCaption("End admin service test");
     }
 
@@ -78,6 +78,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         addExistCustomer();
         printAllCustomers("after add customers");
         updateCustomerTest();
+        printAllCustomers("after update customers");
     }
 
     private void updateCustomerTest() {
@@ -85,6 +86,15 @@ public class Test02AdminServiceTest implements CommandLineRunner {
             Print.printSubCaption("trying to updating customer id");
             Customer customer = adminService.geSingleCustomer(1);
             adminService.updateCustomer(2, customer);
+        } catch (Exception e) {
+            Print.printException("updating company", e);
+        }
+        try {
+            int custoerId = 6;
+            Customer customer = adminService.geSingleCustomer(custoerId);
+            Print.printSubCaption("successfully updateCustomer " + customer.getId());
+            customer.setFirsName("UPDATED FIRST NAME 6");
+            adminService.updateCustomer(custoerId, customer);
         } catch (Exception e) {
             Print.printException("updating company", e);
         }
@@ -106,10 +116,11 @@ public class Test02AdminServiceTest implements CommandLineRunner {
 
     private void addExistCustomer() {
         try {
+            Print.printSubCaption("trying to add customer with exists emil");
             Customer customer = adminService.geSingleCustomer(1);
             adminService.addCustomer(customer);
         } catch (Exception e) {
-            Print.printException("add customer with exists emil 55 ", e);
+            Print.printException("add customer with exists emil", e);
         }
     }
 
