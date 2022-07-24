@@ -1,6 +1,7 @@
 package com.coupon.CouponSpring.services.clients;
 
 import com.coupon.CouponSpring.bean.Company;
+import com.coupon.CouponSpring.bean.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +51,37 @@ public class AdminServiceImpl extends ClientService implements AdminService {
     @Override
     public List<Company> getAllCompanies() {
         return companyRepository.findAll();
+    }
+
+    @Override
+    public void deleteCompany(int companyId) {
+        // TODO: delete company coupon
+        // TODO: delete customers coupon
+        companyRepository.deleteById(companyId);
+    }
+
+    @Override
+    public void addCustomer(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public void updateCustomer(int customerId, Customer customerToUpdate) {
+
+    }
+
+    @Override
+    public void deleteCustomer(int customerId) {
+
+    }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        return null;
+    }
+
+    @Override
+    public Company geSingleCustomer(int customerId) throws CustomerException {
+        return null;
     }
 }

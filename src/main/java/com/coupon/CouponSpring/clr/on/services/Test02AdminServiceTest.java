@@ -48,13 +48,48 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         addCompany("FOX");
         addCompany( "EL-AL");
         addCompany( "B-POALIM");
+        addCompany( "TO-DELETE-5");
         addExistCompany();
         printAllCompanies("after add companies");
 
         Print.printCaption("Update Company Tests");
         updateCompanyTests();
+        printAllCompanies("after Update companies");
+
+        Print.printCaption("Delete Company Tests");
+        deleteCompanyTests();
+        printAllCompanies("after Delete companies");
+
+        geSingleCompanyTests();
 
         Print.printCaption("End admin service test");
+    }
+
+    private void geSingleCompanyTests() {
+        Print.printCaption("getting single company");
+        try {
+            System.out.println(adminService.geSingleCompany(1));
+        } catch (Exception e) {
+            Print.printException("getting single company", e);
+        }
+        try {
+            System.out.println(adminService.geSingleCompany(5555));
+        } catch (Exception e) {
+            Print.printException("getting single company", e);
+        }
+    }
+
+    private void deleteCompanyTests() {
+        Print.printCaption("deleting exist company");
+        adminService.deleteCompany(5);
+        Print.printCaption("deleting company with id 5 was successfully");
+
+        try {
+            Print.printCaption("deleting NOT exist company");
+            adminService.deleteCompany(555);
+        } catch (Exception e) {
+            Print.printException("deleting company", e);
+        }
     }
 
     private void updateCompanyTests() {
