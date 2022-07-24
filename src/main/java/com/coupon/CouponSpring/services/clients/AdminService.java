@@ -3,6 +3,8 @@ package com.coupon.CouponSpring.services.clients;
 import com.coupon.CouponSpring.bean.Company;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface AdminService {
     boolean login(String email, String password);
@@ -14,4 +16,6 @@ public interface AdminService {
     Company geSingleCompany(String email, String password);
 
     Company geSingleCompany(int companyId) throws CompanyException;
+
+    List<Company> getAllCompanies();
 }

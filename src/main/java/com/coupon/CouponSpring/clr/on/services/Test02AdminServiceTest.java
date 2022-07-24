@@ -24,14 +24,13 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         Print.printCaption("Start admin service test");
         Print.printSubCaption("get Admin object from login manager");
         AdminService adminService = (AdminService) loginManager.login("admin", "admin", ClientType.Admin);
-
         if (adminService != null) {
             Print.printSubCaption("adminService != null");
             try {
                 Print.printSubCaption("company not exist on DB");
                 Company taraCompany = adminService.geSingleCompany(33);
             } catch (CompanyException e) {
-                e.printStackTrace();
+                Print.printException("adding company", e);
             }
 
             try {
@@ -40,7 +39,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
                 taraCompany.setEmail("xxx");
                 adminService.addCompany(taraCompany);
             } catch (CompanyException e) {
-                e.printStackTrace();
+                Print.printException("adding company", e);
             }
 
             Print.printSubCaption("cannot add company with exist email");
@@ -49,7 +48,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
                 taraCompany.setName("xxx");
                 adminService.addCompany(taraCompany);
             } catch (CompanyException e) {
-                e.printStackTrace();
+                Print.printException("adding company", e);
             }
 
             Print.printSubCaption("add company OK");
@@ -60,10 +59,10 @@ public class Test02AdminServiceTest implements CommandLineRunner {
                 taraCompany.setId(0);
                 adminService.addCompany(taraCompany);
             } catch (CompanyException e) {
-                e.printStackTrace();
+                Print.printException("adding company", e);
             }
 
-            adminService.g
+            adminService.getAllCompanies().forEach(System.out::println);
 
             Print.printSubCaption("update company");
 //            try {

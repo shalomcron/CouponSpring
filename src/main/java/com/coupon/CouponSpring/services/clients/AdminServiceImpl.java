@@ -3,6 +3,7 @@ package com.coupon.CouponSpring.services.clients;
 import com.coupon.CouponSpring.bean.Company;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +46,10 @@ public class AdminServiceImpl extends ClientService implements AdminService {
     public Company geSingleCompany(int companyId) throws CompanyException {
         return companyRepository.findById(companyId)
                 .orElseThrow(() -> new CompanyException(CompanyMsg.COMPANY_NOT_EXIST, String.valueOf(companyId)));
+    }
+
+    @Override
+    public List<Company> getAllCompanies() {
+        return companyRepository.findAll();
     }
 }
