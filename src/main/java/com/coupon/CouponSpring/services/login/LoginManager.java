@@ -11,26 +11,21 @@ public class LoginManager {
     @Autowired
     private ApplicationContext ctx;
 
-    public ClientService login(String email, String password, ClientType clientType) {
+    public ClientService login(String email, String password, ClientType clientType) throws LoginException {
         ClientService res = null;
-        try {
-            switch (clientType) {
-                case Admin:
-                    res = (ClientService) ctx.getBean(AdminService.class);
-                    break;
-                case Company:
-                    res = (ClientService) ctx.getBean(CompanyService.class);
-                    break;
-                case Customer:
-                    res = (ClientService) ctx.getBean(CustomerService.class);
-                    break;
-            }
-            if (res != null && !res.login(email, password)) {
-                throw new LoginException(clientType);
-            }
-        } catch (LoginException e) {
-            System.out.println(e.getMessage());
-            return null;
+        switch (clientType) {
+            case Admin:
+                res = (ClientService) ctx.getBean(AdminService.class);
+                break;
+            case Company:
+                res = (ClientService) ctx.getBean(CompanyService.class);
+                break;
+            case Customer:
+                res = (ClientService) ctx.getBean(CustomerService.class);
+                break;
+        }
+        if (res != null && !res.login(email, password)) {
+            throw new LoginException(clientType);
         }
         return res;
     }

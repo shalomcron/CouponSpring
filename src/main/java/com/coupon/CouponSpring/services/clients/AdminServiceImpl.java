@@ -18,7 +18,7 @@ public class AdminServiceImpl extends ClientService implements AdminService {
         if (companyRepository.existsByName(company.getName())) {
             throw new CompanyException(CompanyMsg.COMPANY_NAME_ALREADY_EXIST, company.getName());
         }
-        if (companyRepository.existsByEmail(company.getName())) {
+        if (companyRepository.existsByEmail(company.getEmail())) {
             throw new CompanyException(CompanyMsg.COMPANY_EMAIL_ALREADY_EXIST, company.getEmail());
         }
         companyRepository.save(company);

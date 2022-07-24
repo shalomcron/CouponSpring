@@ -1,4 +1,4 @@
-package com.coupon.CouponSpring.clr.on.services;
+package com.coupon.CouponSpring.clr.on.repos;
 
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyService;
@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 @Order(1)
 public class Test01InitData implements CommandLineRunner {
     @Autowired
