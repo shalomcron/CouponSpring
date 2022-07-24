@@ -1,4 +1,4 @@
-package com.coupon.CouponSpring.clr.on;
+package com.coupon.CouponSpring.clr.on.repos;
 
 import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-@Component
+// @Component
 @Order(2)
 public class CustomerReposTest implements CommandLineRunner {
 
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
     @Autowired
-    CouponRepository couponRepository;
+    private CouponRepository couponRepository;
 
     @Override
     public void run(String... args) {

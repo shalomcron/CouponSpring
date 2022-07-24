@@ -1,4 +1,4 @@
-package com.coupon.CouponSpring.clr.on;
+package com.coupon.CouponSpring.clr.on.services;
 
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyService;
@@ -6,17 +6,15 @@ import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.utils.Print;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
-@Component
-public class CustomerServiceTest implements CommandLineRunner {
+// @Component
+public class LoginServiceTest implements CommandLineRunner {
     @Autowired
-    AdminService adminService;
+    private AdminService adminService;
     @Autowired
-    CompanyService companyService;
+    private CompanyService companyService;
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @Override
     public void run(String... args) {
