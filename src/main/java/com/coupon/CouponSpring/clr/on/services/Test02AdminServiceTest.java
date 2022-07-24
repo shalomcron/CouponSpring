@@ -81,6 +81,16 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         printAllCustomers("after update customers");
         deleteCustomerTest();
         printAllCustomers("after delete customers");
+        getCustomersTest();
+    }
+
+    private void getCustomersTest() {
+        Print.printSubCaption("get customers test");
+        try {
+            System.out.println(adminService.geSingleCustomer(1));
+        } catch (Exception e) {
+            Print.printException("get customers", e);
+        }
     }
 
     private void deleteCustomerTest() {
