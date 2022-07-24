@@ -34,7 +34,7 @@ public class AdminServiceImpl extends ClientService implements AdminService {
         if (!fromDB.getName().equals(companyToUpdate.getName())) {
             throw new CompanyException(CompanyMsg.COMPANY_NAME_CANNOT_BE_UPDATED, String.valueOf(companyToUpdate.getName()));
         }
-
+        companyRepository.saveAndFlush(companyToUpdate);
     }
 
     @Override
@@ -61,13 +61,19 @@ public class AdminServiceImpl extends ClientService implements AdminService {
     }
 
     @Override
-    public void addCustomer(Customer customer) {
+    public void addCustomer(Customer customer) throws CustomerException {
+        if (customerRepository.existsByEmail(customer.getEmail())) {
+            throw new CustomerException(CustomerMsg.CUSTOMER_EMAIL_ALLREADY_EXIST, customer.getEmail());
+        }
         customerRepository.save(customer);
     }
 
     @Override
-    public void updateCustomer(int customerId, Customer customerToUpdate) {
-
+    public void updateCustomer(int customerId, Customer customerToUpdate) throws CustomerException {
+        if (customerId != customerToUpdate.getId()) {
+            throw new CustomerException(CustomerMsg.CUSTOMER_ID_CANNOT_BE_UPDATED, String.valueOf(customerId));
+        }
+        customerRepository.save(customerToUpdate);
     }
 
     @Override
@@ -77,11 +83,12 @@ public class AdminServiceImpl extends ClientService implements AdminService {
 
     @Override
     public List<Customer> getAllCustomers() {
-        return null;
+        return customerRepository.findAll();
     }
 
     @Override
-    public Company geSingleCustomer(int customerId) throws CustomerException {
-        return null;
+    public Customer geSingleCustomer(int customerId) throws CustomerException {
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new CustomerException(CustomerMsg.CUSTOMER_ID_NOT_EXIST, String.valueOf(customerId)));
     }
 }

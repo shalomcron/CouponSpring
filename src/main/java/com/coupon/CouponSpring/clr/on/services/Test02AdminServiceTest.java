@@ -1,8 +1,10 @@
 package com.coupon.CouponSpring.clr.on.services;
 
 import com.coupon.CouponSpring.bean.Company;
+import com.coupon.CouponSpring.bean.Customer;
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyException;
+import com.coupon.CouponSpring.services.clients.CustomerException;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginManager;
 import com.coupon.CouponSpring.utils.BeanFactoryUtils;
@@ -22,47 +24,93 @@ public class Test02AdminServiceTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printCaption("Start admin service test");
+        Print.printMainCaption("Start admin service test");
+        Print.printMainCaption("Start loginTests");
+        loginTests();
+        Print.printMainCaption("Start companyTests");
+        companyTests();
+        Print.printMainCaption("Start customerTests");
+        // customerTests();
+        Print.printMainCaption("End admin service test");
+    }
 
-        Print.printSubCaption("fail to log-in");
+    private void loginTests() {
         try {
-            adminService = (AdminService) loginManager.login("admin", "admin", ClientType.Admin);
-        } catch (Exception e) {
-            Print.printException("log-in", e);
-        }
-
-        try {
+            Print.printSubCaption("fail to log-in");
             adminService = (AdminService) loginManager.login("admin1", "admin1", ClientType.Admin);
+            Print.printSubCaption(" log-in");
         } catch (Exception e) {
             Print.printException("fail to log-in", e);
         }
         try {
             adminService = (AdminService) loginManager.login("admin", "admin", ClientType.Admin);
-            Print.printSubCaption("log-in successfullyfully");
+            Print.printSubCaption("log-in successfully");
         } catch (Exception e) {
             Print.printException("fail to log-in", e);
         }
+    }
 
+    private void companyTests() {
         Print.printCaption("Add Company Tests");
         addCompany("TARA");
         addCompany("FOX");
-        addCompany( "EL-AL");
-        addCompany( "B-POALIM");
-        addCompany( "TO-DELETE-5");
+        addCompany("EL-AL");
+        addCompany("B-POALIM");
+        addCompany("TO-DELETE-5");
+        addCompany("TO-UPDATE-6");
         addExistCompany();
-        printAllCompanies("after add companies");
-
-        Print.printCaption("Update Company Tests");
+        printAllCompanies("after Add companies");
         updateCompanyTests();
         printAllCompanies("after Update companies");
-
-        Print.printCaption("Delete Company Tests");
         deleteCompanyTests();
         printAllCompanies("after Delete companies");
-
         geSingleCompanyTests();
+    }
 
-        Print.printCaption("End admin service test");
+    private void customerTests() {
+        Print.printCaption("Add Customer Tests");
+        addCustomer("Shalom");
+        addCustomer("Tossi");
+        addCustomer("Nissim");
+        addCustomer("Yael");
+        addCustomer("TO-DELETE-5");
+        addCustomer("TO-UPDATE-6");
+        addExistCustomer();
+        printAllCustomers("after add customers");
+        updateCustomerTest();
+    }
+
+    private void updateCustomerTest() {
+        try {
+            Print.printCaption("trying to updating customer id");
+            Customer customer = adminService.geSingleCustomer(1);
+            adminService.updateCustomer(2, customer);
+        } catch (Exception e) {
+            Print.printException("updating company", e);
+        }
+    }
+
+    private void printAllCustomers(String desc) {
+        Print.printCaption(desc + ":");
+        adminService.getAllCustomers().forEach(System.out::println);
+    }
+
+    private void addCustomer(String name) {
+        try {
+            adminService.addCustomer(BeanFactoryUtils.getCustomer(name));
+            Print.printSubCaption("successfully add customer " + name);
+        } catch (Exception e) {
+            Print.printException("add customer", e);
+        }
+    }
+
+    private void addExistCustomer() {
+        try {
+            Customer customer = adminService.geSingleCustomer(1);
+            adminService.addCustomer(customer);
+        } catch (Exception e) {
+            Print.printException("add customer with exists emil 55 ", e);
+        }
     }
 
     private void geSingleCompanyTests() {
@@ -101,10 +149,26 @@ public class Test02AdminServiceTest implements CommandLineRunner {
             Print.printException("updating company", e);
         }
         try {
-            Print.printCaption("updating company name");
+            Print.printCaption("updating exists company name");
             Company company = adminService.geSingleCompany(1);
             company.setName("bla");
             adminService.updateCompany(1, company);
+        } catch (CompanyException e) {
+            Print.printException("updating company", e);
+        }
+        try {
+            Print.printCaption("updating exists company email");
+            Company company = adminService.geSingleCompany(1);
+            company.setName("bla");
+            adminService.updateCompany(1, company);
+        } catch (CompanyException e) {
+            Print.printException("updating company", e);
+        }
+        try {
+            Company company = adminService.geSingleCompany(6);
+            company.setPassword("updated_password");
+            adminService.updateCompany(6, company);
+            Print.printCaption("successfully updated company");
         } catch (CompanyException e) {
             Print.printException("updating company", e);
         }

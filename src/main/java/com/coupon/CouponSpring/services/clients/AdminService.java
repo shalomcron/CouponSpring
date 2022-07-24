@@ -18,9 +18,9 @@ public interface AdminService {
     void deleteCompany(int companyId);
 
     // Customers
-    void addCustomer(Customer customer);
-    void updateCustomer(int customerId, Customer customerToUpdate);
+    void addCustomer(Customer customer) throws CustomerException;
+    void updateCustomer(int customerId, Customer customerToUpdate) throws CustomerException;
     void deleteCustomer(int customerId);
     List<Customer> getAllCustomers();
-    Company geSingleCustomer(int customerId) throws CustomerException;
+    Customer geSingleCustomer(int customerId) throws CustomerException;
 }
