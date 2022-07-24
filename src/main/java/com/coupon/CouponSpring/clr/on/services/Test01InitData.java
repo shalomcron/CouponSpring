@@ -6,9 +6,12 @@ import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.utils.Print;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
-// @Component
-public class Test00LoginService implements CommandLineRunner {
+@Component
+@Order(1)
+public class Test01InitData implements CommandLineRunner {
     @Autowired
     private AdminService adminService;
     @Autowired

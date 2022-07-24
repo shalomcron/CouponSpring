@@ -9,8 +9,9 @@ public interface AdminService {
 
     void addCompany(Company company) throws CompanyException;
 
-    void updateCompany(int id, Company companyToUpdate);
+    void updateCompany(int companyId, Company companyToUpdate) throws CompanyException;
 
     Company geSingleCompany(String email, String password);
 
+    Company geSingleCompany(int companyId) throws CompanyException;
 }

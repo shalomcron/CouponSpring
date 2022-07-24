@@ -5,10 +5,14 @@ package com.coupon.CouponSpring.utils;
  */
 public class Print {
     public static void printCaption(String text){
-        System.out.println("@@@@ - " + text + " - @@@@");
+        System.out.println("@@@@" + text);
     }
 
     public static void printSubCaption(String text) {
-        System.out.println(" - " + text + " - ");
+        System.out.println("    @" + text);
+    }
+
+    public static void printException(String desc, Exception e) {
+        System.out.println("Exception " + desc + ":" + e.getMessage());
     }
 }
