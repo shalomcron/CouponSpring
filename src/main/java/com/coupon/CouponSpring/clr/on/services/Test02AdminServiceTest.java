@@ -79,6 +79,18 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         printAllCustomers("after add customers");
         updateCustomerTest();
         printAllCustomers("after update customers");
+        deleteCustomerTest();
+        printAllCustomers("after delete customers");
+    }
+
+    private void deleteCustomerTest() {
+        try {
+            int custoerId = 5;
+            adminService.deleteCustomer(custoerId);
+            Print.printSubCaption("successfully delete customer " + custoerId);
+        } catch (Exception e) {
+            Print.printException("updating company", e);
+        }
     }
 
     private void updateCustomerTest() {
@@ -92,9 +104,9 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         try {
             int custoerId = 6;
             Customer customer = adminService.geSingleCustomer(custoerId);
-            Print.printSubCaption("successfully updateCustomer " + customer.getId());
             customer.setFirsName("UPDATED FIRST NAME 6");
             adminService.updateCustomer(custoerId, customer);
+            Print.printSubCaption("successfully update customer " + customer.getId());
         } catch (Exception e) {
             Print.printException("updating company", e);
         }

@@ -78,7 +78,8 @@ public class AdminServiceImpl extends ClientService implements AdminService {
 
     @Override
     public void deleteCustomer(int customerId) {
-
+        // TODO: delete customers coupon
+        customerRepository.deleteById(customerId);
     }
 
     @Override
