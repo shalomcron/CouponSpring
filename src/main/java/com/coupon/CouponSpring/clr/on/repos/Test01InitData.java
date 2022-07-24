@@ -21,7 +21,7 @@ public class Test01InitData implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printCaption("Start customer service test");
+        Print.printSubCaption("Start customer service test");
         Print.printSubCaption("Admin login");
         boolean isLogin1 = adminService.login("", "");
         boolean isLogin2 = adminService.login("admin", "admin");
@@ -40,6 +40,6 @@ public class Test01InitData implements CommandLineRunner {
         System.out.println("isLogin5:" + isLogin5);
         System.out.println("isLogin6:" + isLogin6);
 
-        Print.printCaption("End customer service test");
+        Print.printSubCaption("End customer service test");
     }
 }

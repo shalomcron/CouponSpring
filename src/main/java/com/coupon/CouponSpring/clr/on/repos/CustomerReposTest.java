@@ -26,7 +26,7 @@ public class CustomerReposTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printCaption("Start customer repos test");
+        Print.printSubCaption("Start customer repos test");
 
         Print.printSubCaption("add customer");
         // roni
@@ -48,6 +48,6 @@ public class CustomerReposTest implements CommandLineRunner {
         customerRepository.saveAll(Arrays.asList(roni, yuval));
         Print.printSubCaption("print all customers");
         customerRepository.findAll().forEach(System.out::println);
-        Print.printCaption("END customer repos test");
+        Print.printSubCaption("END customer repos test");
     }
 }

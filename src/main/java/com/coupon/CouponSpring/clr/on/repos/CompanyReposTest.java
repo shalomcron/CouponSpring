@@ -22,7 +22,7 @@ public class CompanyReposTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printCaption("Start company repos test");
+        Print.printSubCaption("Start company repos test");
 
         Print.printSubCaption("add companies");
         // fox
@@ -51,6 +51,6 @@ public class CompanyReposTest implements CommandLineRunner {
         Print.printSubCaption("print all companies");
         companyRepository.findAll().forEach(System.out::println);
 
-        Print.printCaption("End company repos test");
+        Print.printSubCaption("End company repos test");
     }
 }

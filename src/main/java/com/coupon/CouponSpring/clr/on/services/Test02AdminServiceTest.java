@@ -51,7 +51,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
     }
 
     private void companyTests() {
-        Print.printCaption("Add Company Tests");
+        Print.printSubCaption("Add Company Tests");
         addCompany("TARA");
         addCompany("FOX");
         addCompany("EL-AL");
@@ -68,7 +68,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
     }
 
     private void customerTests() {
-        Print.printCaption("Add Customer Tests");
+        Print.printSubCaption("Add Customer Tests");
         addCustomer("Shalom");
         addCustomer("Tossi");
         addCustomer("Nissim");
@@ -82,7 +82,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
 
     private void updateCustomerTest() {
         try {
-            Print.printCaption("trying to updating customer id");
+            Print.printSubCaption("trying to updating customer id");
             Customer customer = adminService.geSingleCustomer(1);
             adminService.updateCustomer(2, customer);
         } catch (Exception e) {
@@ -91,7 +91,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
     }
 
     private void printAllCustomers(String desc) {
-        Print.printCaption(desc + ":");
+        Print.printSubCaption(desc + ":");
         adminService.getAllCustomers().forEach(System.out::println);
     }
 
@@ -114,7 +114,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
     }
 
     private void geSingleCompanyTests() {
-        Print.printCaption("getting single company");
+        Print.printSubCaption("getting single company");
         try {
             System.out.println(adminService.geSingleCompany(1));
         } catch (Exception e) {
@@ -128,12 +128,11 @@ public class Test02AdminServiceTest implements CommandLineRunner {
     }
 
     private void deleteCompanyTests() {
-        Print.printCaption("deleting exist company");
+        Print.printSubCaption("deleting exist company");
         adminService.deleteCompany(5);
-        Print.printCaption("deleting company with id 5 was successfully");
-
+        Print.printSubCaption("deleting company with id 5 was successfully");
         try {
-            Print.printCaption("deleting NOT exist company");
+            Print.printSubCaption("deleting NOT exist company");
             adminService.deleteCompany(555);
         } catch (Exception e) {
             Print.printException("deleting company", e);
@@ -142,14 +141,14 @@ public class Test02AdminServiceTest implements CommandLineRunner {
 
     private void updateCompanyTests() {
         try {
-            Print.printCaption("updating company id");
+            Print.printSubCaption("updating company id");
             Company company = adminService.geSingleCompany(1);
             adminService.updateCompany(2, company);
         } catch (CompanyException e) {
             Print.printException("updating company", e);
         }
         try {
-            Print.printCaption("updating exists company name");
+            Print.printSubCaption("updating exists company name");
             Company company = adminService.geSingleCompany(1);
             company.setName("bla");
             adminService.updateCompany(1, company);
@@ -157,7 +156,7 @@ public class Test02AdminServiceTest implements CommandLineRunner {
             Print.printException("updating company", e);
         }
         try {
-            Print.printCaption("updating exists company email");
+            Print.printSubCaption("updating exists company email");
             Company company = adminService.geSingleCompany(1);
             company.setName("bla");
             adminService.updateCompany(1, company);
@@ -168,14 +167,14 @@ public class Test02AdminServiceTest implements CommandLineRunner {
             Company company = adminService.geSingleCompany(6);
             company.setPassword("updated_password");
             adminService.updateCompany(6, company);
-            Print.printCaption("successfully updated company");
+            Print.printSubCaption("successfully updated company");
         } catch (CompanyException e) {
             Print.printException("updating company", e);
         }
     }
 
     private void printAllCompanies(String desc) {
-        Print.printCaption(desc + ":");
+        Print.printSubCaption(desc + ":");
         adminService.getAllCompanies().forEach(System.out::println);
     }
 
