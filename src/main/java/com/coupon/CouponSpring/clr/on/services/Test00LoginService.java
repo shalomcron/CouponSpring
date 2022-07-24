@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
 // @Component
-public class LoginServiceTest implements CommandLineRunner {
+public class Test00LoginService implements CommandLineRunner {
     @Autowired
     private AdminService adminService;
     @Autowired

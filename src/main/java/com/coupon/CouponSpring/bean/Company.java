@@ -29,4 +29,5 @@ public class Company {
     )
     @Singular
     private List<Coupon> coupons = new ArrayList<>();
+
 }
