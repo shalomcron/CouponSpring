@@ -42,16 +42,37 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         } catch (Exception e) {
             Print.printException("fail to log-in", e);
         }
-        System.out.println("adminService:" + adminService);
+
+        Print.printCaption("Add Company Tests");
         addCompany("TARA");
         addCompany("FOX");
         addCompany( "EL-AL");
         addCompany( "B-POALIM");
         addExistCompany();
-        printAllCompanies("after add connies");
+        printAllCompanies("after add companies");
 
+        Print.printCaption("Update Company Tests");
+        updateCompanyTests();
 
         Print.printCaption("End admin service test");
+    }
+
+    private void updateCompanyTests() {
+        try {
+            Print.printCaption("updating company id");
+            Company company = adminService.geSingleCompany(1);
+            adminService.updateCompany(2, company);
+        } catch (CompanyException e) {
+            Print.printException("updating company", e);
+        }
+        try {
+            Print.printCaption("updating company name");
+            Company company = adminService.geSingleCompany(1);
+            company.setName("bla");
+            adminService.updateCompany(1, company);
+        } catch (CompanyException e) {
+            Print.printException("updating company", e);
+        }
     }
 
     private void printAllCompanies(String desc) {

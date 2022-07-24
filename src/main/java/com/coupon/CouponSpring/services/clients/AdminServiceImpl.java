@@ -4,7 +4,6 @@ import com.coupon.CouponSpring.bean.Company;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AdminServiceImpl extends ClientService implements AdminService {
