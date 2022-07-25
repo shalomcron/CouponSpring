@@ -9,4 +9,9 @@ public class CutomerServiceImpl extends ClientService implements CustomerService
     public boolean login(String email, String password) {
         return customerRepository.existsByEmailAndPassword(email, password);
     }
+
+    @Override
+    public void purchaseCoupon(int couponId) {
+
+    }
 }

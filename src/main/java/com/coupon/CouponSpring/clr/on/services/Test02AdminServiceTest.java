@@ -4,7 +4,6 @@ import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Customer;
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyException;
-import com.coupon.CouponSpring.services.clients.CustomerException;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginManager;
 import com.coupon.CouponSpring.utils.BeanFactoryUtils;

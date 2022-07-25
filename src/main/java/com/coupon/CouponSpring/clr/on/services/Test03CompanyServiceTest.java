@@ -27,12 +27,13 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start company test");
         Print.printMainCaption("Start company login Tests");
         loginTests();
+
     }
 
     private void loginTests() {
         try {
             Print.printSubCaption("trying to log-in company");
-            companyService = (CompanyService) loginManager.login("admin1", "admin1", ClientType.Company);
+            companyService = (CompanyService) loginManager.login("bla", "bla", ClientType.Company);
         } catch (Exception e) {
             Print.printException("fail to log-in", e);
         }

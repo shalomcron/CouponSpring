@@ -3,11 +3,15 @@ package com.coupon.CouponSpring.repos;
 import com.coupon.CouponSpring.bean.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
     boolean existsByEmailAndPassword(String email, String password);
     boolean existsByName(String name);
 
     boolean existsByEmail(String name);
+
+    Optional<Company> findByEmailAndPassword(String email, String password);
 
 /*
         @Override
