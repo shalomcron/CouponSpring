@@ -13,7 +13,9 @@ public interface CompanyService {
 
     void addCoupon(Coupon coupon) throws CouponException;
 
-    void updateCoupon(int couponId, Coupon couponToUpdate);
+    Coupon getSingleCoupon(int couponId);
+
+    void updateCoupon(int couponId, Coupon couponToUpdate) throws CouponException;
 
     void deleteCoupon(int couponId);
 
@@ -24,4 +26,5 @@ public interface CompanyService {
     List<Coupon> getAllCoupons(double maxPrice);
 
     Company getCompanyDetails();
+
 }

@@ -36,8 +36,16 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
     }
 
     @Override
-    public void updateCoupon(int couponId, Coupon couponToUpdate) {
+    public Coupon getSingleCoupon(int couponId) {
+        return couponRepository.findByIdAndCompany(couponId, company);
+    }
 
+    @Override
+    public void updateCoupon(int couponId, Coupon couponToUpdate) throws CouponException {
+        if (couponId != couponToUpdate.getId()) {
+            throw new CouponException(CouponMsg.COUPON_ID_CANNOT_BE_CHANGED, ""+couponId+"-"+couponToUpdate.getId());
+        }
+        couponRepository.save(couponToUpdate);
     }
 
     @Override
@@ -64,4 +72,5 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
     public Company getCompanyDetails() {
         return null;
     }
+
 }

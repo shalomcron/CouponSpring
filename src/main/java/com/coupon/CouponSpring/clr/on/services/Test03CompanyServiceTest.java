@@ -1,11 +1,7 @@
 package com.coupon.CouponSpring.clr.on.services;
 
 import com.coupon.CouponSpring.bean.Category;
-import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
-import com.coupon.CouponSpring.bean.Customer;
-import com.coupon.CouponSpring.services.clients.AdminService;
-import com.coupon.CouponSpring.services.clients.CompanyException;
 import com.coupon.CouponSpring.services.clients.CompanyService;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginManager;
@@ -33,12 +29,37 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         addCouponsTest();
         Print.printMainCaption("Start add Coupons Same Title SameCompany Test");
         addCouponsSameTitleSameCompanyTest();
+        Print.printMainCaption("Start update Coupon Test");
+        updateExistsCouponTest(1);
+        updateExistsCouponTest(2);
+        updateExistsCouponIdTest(1, 777);
+    }
+
+    private void updateExistsCouponIdTest(int couponId, int changedCouponId) {
+        try {
+            Coupon coupon = companyService.getSingleCoupon(couponId);
+            coupon.setId(changedCouponId);
+            companyService.updateCoupon(couponId, coupon);
+            Print.printSubCaption("successfully update coupon with title : " + coupon.getTitle());
+        } catch (Exception e) {
+            Print.printException("fail in update Coupon", e);
+        }
+    }
+
+    private void updateExistsCouponTest(int couponId) {
+        try {
+            Coupon coupon = companyService.getSingleCoupon(couponId);
+            coupon.setTitle("CHANGED TITLE - " + couponId);
+            companyService.updateCoupon(couponId, coupon);
+            Print.printSubCaption("successfully update coupon with title : " + coupon.getTitle());
+        } catch (Exception e) {
+            Print.printException("fail in update Coupon", e);
+        }
     }
 
     private void addCouponsTest() {
         addCouponTest("Coupon food", 140, Category.Food, 12);
         addCouponTest("Coupon Electricity", 70, Category.Electricity, 12);
-        addCouponTest("Coupon Restaurant", 35, Category.Restaurant, 12);
         addCouponTest("Coupon Restaurant", 35, Category.Restaurant, 12);
     }
 
@@ -53,7 +74,8 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
     }
 
     private void addCouponsSameTitleSameCompanyTest() {
-        // Print.printSubCaption("trying to add coupon same title same company");
+        Print.printSubCaption("trying to add coupon same title same company");
+        addCouponTest("Coupon Restaurant", 35, Category.Restaurant, 12);
     }
 
     private void loginTests() {
