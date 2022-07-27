@@ -5,19 +5,19 @@ import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class CompanyServiceImpl extends ClientService implements CompanyService {
 
-    private int companyId;
+    private Company company;
 
     @Override
     public boolean login(String email, String password) {
         try {
-            Company company = companyRepository.findByEmailAndPassword(email, password)
+            this.company = companyRepository.findByEmailAndPassword(email, password)
                     .orElseThrow();
-            this.companyId = company.getId();
             return true;
         } catch (Exception e) {
             System.out.println("E"+e.getMessage());
@@ -26,8 +26,13 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
     }
 
     @Override
-    public void addCoupon(Coupon coupon) {
-
+    public void addCoupon(Coupon coupon) throws CouponException {
+        if (couponRepository.existsByTitleAndCompany(coupon.getTitle(), company)) {
+            throw new CouponException(CouponMsg.COUPON_TITLE_EXIST_SAME_COMPANY, coupon.getTitle());
+        }
+        coupon.setCompany(company);
+        company.setCoupons(List.of(coupon));
+        companyRepository.save(this.company);
     }
 
     @Override

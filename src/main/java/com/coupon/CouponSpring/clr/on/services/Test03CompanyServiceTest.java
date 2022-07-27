@@ -1,6 +1,8 @@
 package com.coupon.CouponSpring.clr.on.services;
 
+import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
+import com.coupon.CouponSpring.bean.Coupon;
 import com.coupon.CouponSpring.bean.Customer;
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyException;
@@ -27,7 +29,31 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start company test");
         Print.printMainCaption("Start company login Tests");
         loginTests();
+        Print.printMainCaption("Start add Coupons Test");
+        addCouponsTest();
+        Print.printMainCaption("Start add Coupons Same Title SameCompany Test");
+        addCouponsSameTitleSameCompanyTest();
+    }
 
+    private void addCouponsTest() {
+        addCouponTest("Coupon food", 140, Category.Food, 12);
+        addCouponTest("Coupon Electricity", 70, Category.Electricity, 12);
+        addCouponTest("Coupon Restaurant", 35, Category.Restaurant, 12);
+        addCouponTest("Coupon Restaurant", 35, Category.Restaurant, 12);
+    }
+
+    private void addCouponTest(String title, int amount, Category category, int endMoth) {
+        try {
+            Coupon coupon = BeanFactoryUtils.getCoupon(title, amount, category, endMoth);
+            companyService.addCoupon(coupon);
+            Print.printSubCaption("successfully add coupon with title : " + coupon.getTitle());
+        } catch (Exception e) {
+            Print.printException("fail in add Coupon", e);
+        }
+    }
+
+    private void addCouponsSameTitleSameCompanyTest() {
+        // Print.printSubCaption("trying to add coupon same title same company");
     }
 
     private void loginTests() {

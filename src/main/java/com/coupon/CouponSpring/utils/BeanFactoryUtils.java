@@ -33,6 +33,16 @@ public class BeanFactoryUtils {
                 .endDate(Date.valueOf(LocalDate.now().plus(endMoth, ChronoUnit.MONTHS)))
                 .build();
     }
+    public static Coupon getCoupon(String title, int amount, Category category, int endMoth) {
+        return Coupon.builder()
+                .description(title + "-" + "desc")
+                .title(title + "-" + "title")
+                .amount(amount)
+                .category(category)
+                .startDate(Date.valueOf(LocalDate.now()))
+                .endDate(Date.valueOf(LocalDate.now().plus(endMoth, ChronoUnit.MONTHS)))
+                .build();
+    }
 
 
     public static Customer getCustomer(String name) {

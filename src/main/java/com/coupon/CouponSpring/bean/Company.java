@@ -25,7 +25,9 @@ public class Company {
 
     @OneToMany(
             mappedBy = "company",
-            cascade = CascadeType.PERSIST
+             // TODO: ASK FOR cascade options
+            // cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL
     )
     @Singular
     private List<Coupon> coupons = new ArrayList<>();

@@ -11,7 +11,7 @@ import java.util.List;
 public interface CompanyService {
     boolean login(String email, String password);
 
-    void addCoupon(Coupon coupon);
+    void addCoupon(Coupon coupon) throws CouponException;
 
     void updateCoupon(int couponId, Coupon couponToUpdate);
 
