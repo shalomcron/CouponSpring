@@ -20,7 +20,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
                     .orElseThrow();
             return true;
         } catch (Exception e) {
-            System.out.println("E"+e.getMessage());
+            System.out.println("E" + e.getMessage());
             return false;
         }
     }
@@ -43,14 +43,20 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
     @Override
     public void updateCoupon(int couponId, Coupon couponToUpdate) throws CouponException {
         if (couponId != couponToUpdate.getId()) {
-            throw new CouponException(CouponMsg.COUPON_ID_CANNOT_BE_CHANGED, ""+couponId+"-"+couponToUpdate.getId());
+            throw new CouponException(CouponMsg.COUPON_ID_CANNOT_BE_CHANGED,
+                    couponId + "-" + couponToUpdate.getId());
+        }
+        if (company.getId() != couponToUpdate.getCompany().getId()) {
+            throw new CouponException(CouponMsg.COUPON_COMPANY_ID_CANNOT_BE_CHANGED,
+                    company.getId() + "-" + couponToUpdate.getCompany().getId());
         }
         couponRepository.save(couponToUpdate);
     }
 
     @Override
     public void deleteCoupon(int couponId) {
-
+        // TODO: delete customers coupon
+        couponRepository.deleteById(couponId);
     }
 
     @Override

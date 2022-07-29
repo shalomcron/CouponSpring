@@ -1,6 +1,7 @@
 package com.coupon.CouponSpring.clr.on.services;
 
 import com.coupon.CouponSpring.bean.Category;
+import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
 import com.coupon.CouponSpring.services.clients.CompanyService;
 import com.coupon.CouponSpring.services.login.ClientType;
@@ -33,6 +34,29 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         updateExistsCouponTest(1);
         updateExistsCouponTest(2);
         updateExistsCouponIdTest(1, 777);
+        updateExistsCouponCompanyTest(1, 555);
+        Print.printMainCaption("Start delete Coupon Test");
+        deleteCouponTest(1);
+    }
+
+    private void deleteCouponTest(int couponId) {
+        try {
+            companyService.deleteCoupon(couponId);
+            Print.printSubCaption("successfully delete coupon company with id : " + couponId);
+        } catch (Exception e) {
+            Print.printException("fail in update Coupon", e);
+        }
+    }
+
+    private void updateExistsCouponCompanyTest(int couponId, int changedCompanyId) {
+        try {
+            Coupon coupon = companyService.getSingleCoupon(couponId);
+            coupon.getCompany().setId(changedCompanyId);
+            companyService.updateCoupon(couponId, coupon);
+            Print.printSubCaption("successfully update coupon with title : " + coupon.getTitle());
+        } catch (Exception e) {
+            Print.printException("fail in update Coupon", e);
+        }
     }
 
     private void updateExistsCouponIdTest(int couponId, int changedCouponId) {
