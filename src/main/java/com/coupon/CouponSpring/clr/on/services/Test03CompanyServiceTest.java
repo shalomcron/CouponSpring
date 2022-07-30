@@ -41,11 +41,23 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         getAllCouponsTest();
         Print.printMainCaption("Start get All Category Coupons Test");
         getAllCategoryCouponsTest(Category.Vacation);
+        Print.printMainCaption("Start get All MaxPrice Coupons Test");
+        getAllMaxPriceCouponsTest(55);
+    }
+
+    private void getAllMaxPriceCouponsTest(double maxPrice) {
+        try {
+            Company company = companyService.getCompanyDetails();
+            Print.printSubCaption("print all companies maxPrice:" + company.getId() + "-" + maxPrice);
+            companyService.getAllCoupons(maxPrice).forEach(System.out::println);
+        } catch (Exception e) {
+            Print.printException("fail in getAllCoupons maxPrice", e);
+        }
     }
 
     private void getAllCategoryCouponsTest(Category category) {
         Company company = companyService.getCompanyDetails();
-        Print.printSubCaption("print all companies for comppany:" + company.getId() + "-" + category.name());
+        Print.printSubCaption("print all companies for category:" + company.getId() + "-" + category.name());
         companyService.getAllCoupons(category).forEach(System.out::println);
     }
 
