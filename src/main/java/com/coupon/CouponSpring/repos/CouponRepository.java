@@ -1,5 +1,6 @@
 package com.coupon.CouponSpring.repos;
 
+import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,6 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
     Coupon findByIdAndCompany(int couponId, Company company);
 
     List<Coupon> findByCompany(Company company);
+
+    // List<Coupon> findByCompanyAndCategory(Category category);
 }

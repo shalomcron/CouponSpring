@@ -39,10 +39,20 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         deleteCouponTest(1);
         Print.printMainCaption("Start get All Coupons Test");
         getAllCouponsTest();
+        Print.printMainCaption("Start get All Category Coupons Test");
+        getAllCategoryCouponsTest(Category.Vacation);
+    }
+
+    private void getAllCategoryCouponsTest(Category category) {
+        Company company = companyService.getCompanyDetails();
+        Print.printSubCaption("print all companies for comppany:" + company.getId() + "-" + category.name());
+        companyService.getAllCoupons(category).forEach(System.out::println);
     }
 
     private void getAllCouponsTest() {
-        companyService.getAllCoupons();
+        Company company = companyService.getCompanyDetails();
+        Print.printSubCaption("print all companies for comppany:" + company.getId() + "-" + company.getName());
+        companyService.getAllCoupons().forEach(System.out::println);
     }
 
     private void deleteCouponTest(int couponId) {
@@ -88,9 +98,11 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
     }
 
     private void addCouponsTest() {
-        addCouponTest("Coupon food", 140, Category.Food, 12);
-        addCouponTest("Coupon Electricity", 70, Category.Electricity, 12);
-        addCouponTest("Coupon Restaurant", 35, Category.Restaurant, 12);
+        addCouponTest("Coupon food", 140, Category.Food, 1);
+        addCouponTest("Coupon Electricity", 70, Category.Electricity, 2);
+        addCouponTest("Coupon Restaurant", 35, Category.Restaurant, 3);
+        addCouponTest("Coupon Vacation 1", 15, Category.Vacation, 4);
+        addCouponTest("Coupon Vacation 2", 7, Category.Vacation, 5);
     }
 
     private void addCouponTest(String title, int amount, Category category, int endMoth) {

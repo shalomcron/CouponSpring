@@ -19,7 +19,7 @@ public interface CompanyService {
 
     void deleteCoupon(int couponId);
 
-    List<Coupon> getAllCoupons(Company company);
+    List<Coupon> getAllCoupons();
 
     List<Coupon> getAllCoupons(Category category);
 
