@@ -37,6 +37,12 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         updateExistsCouponCompanyTest(1, 555);
         Print.printMainCaption("Start delete Coupon Test");
         deleteCouponTest(1);
+        Print.printMainCaption("Start get All Coupons Test");
+        getAllCouponsTest();
+    }
+
+    private void getAllCouponsTest() {
+        companyService.getAllCoupons();
     }
 
     private void deleteCouponTest(int couponId) {

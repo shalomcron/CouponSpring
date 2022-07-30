@@ -5,7 +5,6 @@ import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -60,8 +59,8 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
     }
 
     @Override
-    public List<Coupon> getAllCoupons() {
-        return null;
+    public List<Coupon> getAllCoupons(Company company) {
+        return companyRepository.findByCompany(company);
     }
 
     @Override
