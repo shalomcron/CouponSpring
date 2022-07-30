@@ -15,5 +15,5 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 
     List<Coupon> findByCompany(Company company);
 
-    // List<Coupon> findByCompanyAndCategory(Category category);
+    List<Coupon> findByCompanyAndCategory(Company company, Category category);
 }
