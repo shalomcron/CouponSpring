@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public interface CustomerService {
     boolean login(String email, String password);
 
-    void purchaseCoupon(int couponId);
+    void purchaseCoupon(int couponId) throws CouponException;
 
 
 }
