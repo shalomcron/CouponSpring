@@ -60,7 +60,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 
     @Override
     public List<Coupon> getAllCoupons(Company company) {
-        return companyRepository.findByCompany(company);
+        return couponRepository.findByCompany(company);
     }
 
     @Override
