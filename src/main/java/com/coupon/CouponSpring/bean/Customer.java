@@ -36,7 +36,5 @@ public class Customer {
             inverseJoinColumns = { @JoinColumn(name = "coupon_id") }
     )
     @Singular
-    // private List<Coupon> coupons = new ArrayList<>();
-    private Set<Coupon> coupons = new HashSet<>();
-
+     private List<Coupon> coupons = new ArrayList<>();
 }

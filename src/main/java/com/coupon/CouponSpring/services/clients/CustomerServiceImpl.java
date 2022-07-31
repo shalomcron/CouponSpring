@@ -32,7 +32,7 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
         );
         customer.getCoupons().add(coupon);
         // customer.setCoupons(Arrays.asList(coupon));
-      //  customer.setCoupons(Set.of(coupon));
+        //  customer.setCoupons(Set.of(coupon));
         // customerRepository.save(customer);
         customerRepository.purchaseCoupon(this.customer.getId(), couponId);
     }
