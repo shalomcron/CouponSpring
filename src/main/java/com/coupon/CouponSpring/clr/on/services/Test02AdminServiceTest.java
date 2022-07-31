@@ -61,8 +61,6 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         printAllCompanies("after Add companies");
         updateCompanyTests();
         printAllCompanies("after Update companies");
-        deleteCompanyTests();
-        printAllCompanies("after Delete companies");
         geSingleCompanyTests();
     }
 
@@ -75,18 +73,15 @@ public class Test02AdminServiceTest implements CommandLineRunner {
         addCustomer("TO-DELETE-5");
         addCustomer("TO-UPDATE-6");
         addExistCustomer();
-        printAllCustomers("after add customers");
+        geSingleCustomer(1);
         updateCustomerTest();
-        printAllCustomers("after update customers");
-        deleteCustomerTest();
-        printAllCustomers("after delete customers");
-        getCustomersTest();
+        printAllCustomers("all customers");
     }
 
-    private void getCustomersTest() {
-        Print.printSubCaption("get customers test");
+    private void geSingleCustomer(int customerId) {
+        Print.printSubCaption("get customers: " + customerId);
         try {
-            System.out.println(adminService.geSingleCustomer(1));
+            System.out.println(adminService.geSingleCustomer(customerId));
         } catch (Exception e) {
             Print.printException("get customers", e);
         }
@@ -107,14 +102,15 @@ public class Test02AdminServiceTest implements CommandLineRunner {
             Print.printSubCaption("trying to updating customer id");
             Customer customer = adminService.geSingleCustomer(1);
             adminService.updateCustomer(2, customer);
+            printAllCustomers("after update customers");
         } catch (Exception e) {
             Print.printException("updating company", e);
         }
         try {
-            int custoerId = 6;
-            Customer customer = adminService.geSingleCustomer(custoerId);
+            int customerId = 6;
+            Customer customer = adminService.geSingleCustomer(customerId);
             customer.setFirsName("UPDATED FIRST NAME 6");
-            adminService.updateCustomer(custoerId, customer);
+            adminService.updateCustomer(customerId, customer);
             Print.printSubCaption("successfully update customer " + customer.getId());
         } catch (Exception e) {
             Print.printException("updating company", e);
@@ -156,18 +152,6 @@ public class Test02AdminServiceTest implements CommandLineRunner {
             System.out.println(adminService.geSingleCompany(5555));
         } catch (Exception e) {
             Print.printException("getting single company", e);
-        }
-    }
-
-    private void deleteCompanyTests() {
-        Print.printSubCaption("deleting exist company");
-        adminService.deleteCompany(5);
-        Print.printSubCaption("deleting company with id 5 was successfully");
-        try {
-            Print.printSubCaption("deleting NOT exist company");
-            adminService.deleteCompany(555);
-        } catch (Exception e) {
-            Print.printException("deleting company", e);
         }
     }
 
