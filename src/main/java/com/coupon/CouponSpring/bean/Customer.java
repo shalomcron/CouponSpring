@@ -27,8 +27,14 @@ public class Customer {
     @Column(length = 30, nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
-    // cascade = CascadeType.PERSIST
+    @ManyToMany(
+            cascade={CascadeType.ALL}
+    )
+    @JoinTable(
+            name = "customer_coupons",
+            joinColumns = { @JoinColumn(name = "customer_id") },
+            inverseJoinColumns = { @JoinColumn(name = "coupon_id") }
+    )
     @Singular
     // private List<Coupon> coupons = new ArrayList<>();
     private Set<Coupon> coupons = new HashSet<>();
