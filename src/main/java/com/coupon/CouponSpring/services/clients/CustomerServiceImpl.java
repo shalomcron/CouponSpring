@@ -2,12 +2,12 @@ package com.coupon.CouponSpring.services.clients;
 
 import com.coupon.CouponSpring.bean.Coupon;
 import com.coupon.CouponSpring.bean.Customer;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Set;
-
 @Service
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class CustomerServiceImpl extends ClientService implements CustomerService {
 
     Customer customer;
@@ -30,13 +30,6 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
         Coupon coupon = couponRepository.findById(couponId).orElseThrow(() ->
                 new CouponException(CouponMsg.COUPON_ID_NO_EXISTS, String.valueOf(couponId))
         );
-        // customer.getCoupons().add(coupon);
-        // customer.setCoupons(Arrays.asList(coupon));
-        //  customer.setCoupons(Set.of(coupon));
-        // customerRepository.save(customer);
-//        customer.getCoupons().add(coupon);
-//        customerRepository.saveAndFlush(customer);
-
         customerRepository.purchaseCoupon(this.customer.getId(), couponId);
     }
 

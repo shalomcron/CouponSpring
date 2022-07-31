@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service()
 public interface CompanyService {
     boolean login(String email, String password);
 

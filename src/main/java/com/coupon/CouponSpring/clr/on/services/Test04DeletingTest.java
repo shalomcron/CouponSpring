@@ -10,7 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 @Order(4)
 public class Test04DeletingTest implements CommandLineRunner {
 
@@ -24,7 +24,7 @@ public class Test04DeletingTest implements CommandLineRunner {
         Print.printMainCaption("Start Test04DeletingTest");
         Print.printMainCaption("Start admin log-in");
         adminLogin();
-        adminDeleteCompanyTest(1);
+        // adminDeleteCompanyTest(1);
 //        Print.printMainCaption("Start company log-in");
 //        companyLogin();
 //        Print.printMainCaption("Start company Delete Coupon Test");

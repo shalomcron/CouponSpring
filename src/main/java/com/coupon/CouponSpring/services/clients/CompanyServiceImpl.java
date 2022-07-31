@@ -3,11 +3,14 @@ package com.coupon.CouponSpring.services.clients;
 import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service()
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class CompanyServiceImpl extends ClientService implements CompanyService {
 
     private Company company;
@@ -17,6 +20,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
         try {
             this.company = companyRepository.findByEmailAndPassword(email, password)
                     .orElseThrow();
+            System.out.println("login this.company : " + this.company);
             return true;
         } catch (Exception e) {
             System.out.println("E" + e.getMessage());
@@ -29,6 +33,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
         if (couponRepository.existsByTitleAndCompany(coupon.getTitle(), company)) {
             throw new CouponException(CouponMsg.COUPON_TITLE_EXIST_SAME_COMPANY, coupon.getTitle());
         }
+        System.out.println("addCoupon company:" + company);
         coupon.setCompany(company);
         company.setCoupons(List.of(coupon));
         companyRepository.save(this.company);
