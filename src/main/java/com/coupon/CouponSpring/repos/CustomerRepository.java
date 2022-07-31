@@ -18,7 +18,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Modifying
     @Transactional
     @Query(
-            value = "INSERT INTO `coupons-using-spring`.`customer_coupons` (`customer_id`, `coupons_id`) VALUES (?1, ?2)",
+            value = "INSERT INTO `coupons-using-spring`.`customer_coupons` (`customer_id`, `coupon_id`) VALUES (?1, ?2)",
             nativeQuery = true
     )
     void purchaseCoupon(int customerId, int couponId);

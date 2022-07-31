@@ -19,7 +19,6 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
                     .orElseThrow();
             return true;
         } catch (Exception e) {
-            System.out.println("Ex IN customer login:" + e.getMessage());
             return false;
         }
 
@@ -27,13 +26,17 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
 
     @Override
     public void purchaseCoupon(int couponId) throws CouponException {
+        // TODO: checks !!
         Coupon coupon = couponRepository.findById(couponId).orElseThrow(() ->
                 new CouponException(CouponMsg.COUPON_ID_NO_EXISTS, String.valueOf(couponId))
         );
-        customer.getCoupons().add(coupon);
+        // customer.getCoupons().add(coupon);
         // customer.setCoupons(Arrays.asList(coupon));
         //  customer.setCoupons(Set.of(coupon));
         // customerRepository.save(customer);
+//        customer.getCoupons().add(coupon);
+//        customerRepository.saveAndFlush(customer);
+
         customerRepository.purchaseCoupon(this.customer.getId(), couponId);
     }
 

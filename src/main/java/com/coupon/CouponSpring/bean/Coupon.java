@@ -35,6 +35,9 @@ public class Coupon {
     private double price;
     private String image;
 
+
     @ManyToMany(mappedBy = "coupons")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<Customer> customers = new HashSet<>();
 }
