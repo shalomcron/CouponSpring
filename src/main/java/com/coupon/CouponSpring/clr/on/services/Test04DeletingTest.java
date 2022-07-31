@@ -2,6 +2,7 @@ package com.coupon.CouponSpring.clr.on.services;
 
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyService;
+import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginManager;
 import com.coupon.CouponSpring.utils.Print;
@@ -18,6 +19,7 @@ public class Test04DeletingTest implements CommandLineRunner {
     private LoginManager loginManager;
     private AdminService adminService;
     private CompanyService companyTaraService;
+    private CustomerService customerShalomService = null;
 
     @Override
     public void run(String... args) {
@@ -27,6 +29,7 @@ public class Test04DeletingTest implements CommandLineRunner {
         adminDeleteCompanyTest(2);
         Print.printMainCaption("Start company log-in");
         companyTaraLogin();
+        loginCustomerShalomTests();
         Print.printMainCaption("Start company Delete Coupon Test");
         companyDeleteCouponTest(1);
     }
@@ -62,6 +65,15 @@ public class Test04DeletingTest implements CommandLineRunner {
             companyTaraService = (CompanyService) loginManager.login("TARA-mail@gmail.com", "TARA-password", ClientType.Company);
             Print.printSubCaption("log-in company successfully");
 
+        } catch (Exception e) {
+            Print.printException("fail to log-in", e);
+        }
+    }
+
+    private void loginCustomerShalomTests() {
+        try {
+            customerShalomService = (CustomerService) loginManager.login("Shalom-mail@gmail.com", "Shalom-password", ClientType.Customer);
+            Print.printSubCaption("log-in Customer successfully");
         } catch (Exception e) {
             Print.printException("fail to log-in", e);
         }

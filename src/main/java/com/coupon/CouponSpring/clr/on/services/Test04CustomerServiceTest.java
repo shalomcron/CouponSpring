@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(3)
 public class Test04CustomerServiceTest implements CommandLineRunner {
-    CustomerService customerService = null;
+    private CustomerService customerShalomService = null;
 
     @Autowired
     private LoginManager loginManager;
@@ -22,7 +22,7 @@ public class Test04CustomerServiceTest implements CommandLineRunner {
     public void run(String... args) {
         Print.printMainCaption("Start Customer test");
         Print.printMainCaption("Start Customer login Tests");
-        loginTests();
+        loginCustomerShalomTests();
         Print.printMainCaption("Start purchase Coupon Test");
         purchaseCouponTest(1);
         purchaseCouponTest(2);
@@ -35,29 +35,29 @@ public class Test04CustomerServiceTest implements CommandLineRunner {
     }
 
     private void getCustomerDetailsTest() {
-        Customer customer = customerService.getCustomerDetails();
+        Customer customer = customerShalomService.getCustomerDetails();
         Print.printSubCaption("get customer details");
         System.out.println(customer);
     }
 
     private void purchaseCouponTest(int couponId) {
         try {
-            customerService.purchaseCoupon(couponId);
+            customerShalomService.purchaseCoupon(couponId);
             Print.printSubCaption("purchase coupon ended successfully, couponId:" + couponId);
         } catch (Exception e) {
             Print.printException("fail to purchase coupon", e);
         }
     }
 
-    private void loginTests() {
+    private void loginCustomerShalomTests() {
         try {
             Print.printSubCaption("trying to log-in Customer");
-            customerService = (CustomerService) loginManager.login("bla", "bla", ClientType.Customer);
+            customerShalomService = (CustomerService) loginManager.login("bla", "bla", ClientType.Customer);
         } catch (Exception e) {
             Print.printException("fail to log-in", e);
         }
         try {
-            customerService = (CustomerService) loginManager.login("Shalom-mail@gmail.com", "Shalom-password", ClientType.Customer);
+            customerShalomService = (CustomerService) loginManager.login("Shalom-mail@gmail.com", "Shalom-password", ClientType.Customer);
             Print.printSubCaption("log-in Customer successfully");
         } catch (Exception e) {
             Print.printException("fail to log-in", e);

@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class Test03CompanyServiceTest implements CommandLineRunner {
-    CompanyService companyTaraService = null;
-    CompanyService companyFoxService = null;
+    private CompanyService companyTaraService = null;
+    private CompanyService companyFoxService = null;
 
     @Autowired
     private LoginManager loginManager;
