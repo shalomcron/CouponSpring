@@ -19,7 +19,6 @@ public class Test04DeletingTest implements CommandLineRunner {
     private LoginManager loginManager;
     private AdminService adminService;
     private CompanyService companyTaraService;
-    private CustomerService customerShalomService = null;
 
     @Override
     public void run(String... args) {
@@ -29,7 +28,6 @@ public class Test04DeletingTest implements CommandLineRunner {
         adminDeleteCompanyTest(2);
         Print.printMainCaption("Start company log-in");
         companyTaraLogin();
-        loginCustomerShalomTests();
         Print.printMainCaption("Start company Delete Coupon Test");
         companyDeleteCouponTest(1);
     }
@@ -55,6 +53,8 @@ public class Test04DeletingTest implements CommandLineRunner {
             companyTaraService.getAllCoupons().forEach(System.out::println);
             companyTaraService.deleteCoupon(couponId);
             Print.printSubCaption("company TARA has deleted coupon " + couponId + " successfully");
+            Print.printSubCaption("coupons after delete:");
+            companyTaraService.getAllCoupons().forEach(System.out::println);
         } catch (Exception e) {
             Print.printException("company TARA fail to deleted coupon " + couponId, e);
         }
@@ -65,15 +65,6 @@ public class Test04DeletingTest implements CommandLineRunner {
             companyTaraService = (CompanyService) loginManager.login("TARA-mail@gmail.com", "TARA-password", ClientType.Company);
             Print.printSubCaption("log-in company successfully");
 
-        } catch (Exception e) {
-            Print.printException("fail to log-in", e);
-        }
-    }
-
-    private void loginCustomerShalomTests() {
-        try {
-            customerShalomService = (CustomerService) loginManager.login("Shalom-mail@gmail.com", "Shalom-password", ClientType.Customer);
-            Print.printSubCaption("log-in Customer successfully");
         } catch (Exception e) {
             Print.printException("fail to log-in", e);
         }
