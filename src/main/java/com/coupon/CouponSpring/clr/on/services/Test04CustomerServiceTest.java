@@ -23,7 +23,9 @@ public class Test04CustomerServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start Customer login Tests");
         loginTests();
         Print.printMainCaption("Start purchase Coupon Test");
-        purchaseCouponTest(1);
+        Print.printMainCaption("Start purchase Coupon Test - coupon not exist");
+        purchaseCouponTest(100);
+        purchaseCouponTest(2);
     }
 
     private void purchaseCouponTest(int couponId) {

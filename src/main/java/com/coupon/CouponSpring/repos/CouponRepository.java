@@ -20,8 +20,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 
     @Query(
             nativeQuery = true,
-            value = "select * from coupons where company=?1 and price<?2"
+            value = "select * from coupons where company_id=?1 and price<?2"
     )
-    // TODO: fix sql
     List<Coupon> findByCompanyAndMaxPrice(int companyId, double maxPrice);
 }
