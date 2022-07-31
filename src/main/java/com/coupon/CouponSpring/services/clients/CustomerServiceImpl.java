@@ -27,9 +27,15 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
         Coupon coupon = couponRepository.findById(couponId).orElseThrow(() ->
                 new CouponException(CouponMsg.COUPON_ID_NO_EXISTS, String.valueOf(couponId))
         );
-        System.out.println("**^^" + coupon);
+        System.out.println("purchaseCoupon coupon:" + coupon);
         // TODO: SINGULAR??
+        // decreament
         customer.getCoupons().add(coupon);
         customerRepository.save(customer);
+    }
+
+    @Override
+    public Customer getCustomerDetails() {
+        return customerRepository.findById(customer.getId()).orElseThrow();
     }
 }

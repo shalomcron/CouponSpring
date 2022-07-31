@@ -1,5 +1,6 @@
 package com.coupon.CouponSpring.clr.on.services;
 
+import com.coupon.CouponSpring.bean.Customer;
 import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginManager;
@@ -23,9 +24,19 @@ public class Test04CustomerServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start Customer login Tests");
         loginTests();
         Print.printMainCaption("Start purchase Coupon Test");
-        Print.printMainCaption("Start purchase Coupon Test - coupon not exist");
-        purchaseCouponTest(100);
+        // purchaseCouponTest(100);
         purchaseCouponTest(2);
+        purchaseCouponTest(3);
+//        purchaseCouponTest(4);
+//        purchaseCouponTest(5);
+        Print.printMainCaption("Start get Customer Details Test");
+        getCustomerDetailsTest();
+    }
+
+    private void getCustomerDetailsTest() {
+        Customer customer = customerService.getCustomerDetails();
+        Print.printSubCaption("get customer details");
+        System.out.println(customer);
     }
 
     private void purchaseCouponTest(int couponId) {

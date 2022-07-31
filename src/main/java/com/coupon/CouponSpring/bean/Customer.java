@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -25,8 +27,8 @@ public class Customer {
     @Column(length = 30, nullable = false)
     private String password;
 
-    @ManyToMany()
-    // cascade = CascadeType.PERSIST
+    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST)
+    @JoinColumn(name = "coupon_id")
     @Singular
-    private List<Coupon> coupons = new ArrayList<>();
+    private Set<Coupon> coupons = new HashSet<>();
 }

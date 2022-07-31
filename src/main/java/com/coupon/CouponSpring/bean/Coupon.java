@@ -17,12 +17,11 @@ public class Coupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    // @JoinColumn(name = "company_id")
-    // TODO: USE JoinColumn?
-    @ManyToOne
+    @ManyToOne()
     @ToString.Exclude
     @JsonIgnore
     Company company;
+
     @Enumerated(EnumType.STRING)
     private Category category;
     @Column(length = 100, nullable = false)
