@@ -3,7 +3,6 @@ package com.coupon.CouponSpring.services.clients;
 import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

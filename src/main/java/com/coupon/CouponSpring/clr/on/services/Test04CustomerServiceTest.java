@@ -24,11 +24,11 @@ public class Test04CustomerServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start Customer login Tests");
         loginTests();
         Print.printMainCaption("Start purchase Coupon Test");
-        // purchaseCouponTest(100);
         purchaseCouponTest(2);
         purchaseCouponTest(3);
-//        purchaseCouponTest(4);
-//        purchaseCouponTest(5);
+        purchaseCouponTest(4);
+        purchaseCouponTest(5);
+        purchaseCouponTest(100);
         Print.printMainCaption("Start get Customer Details Test");
         getCustomerDetailsTest();
     }

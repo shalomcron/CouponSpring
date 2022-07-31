@@ -25,7 +25,9 @@ public class Company {
 
     @OneToMany(
             mappedBy = "company",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+            cascade = {
+                    CascadeType.PERSIST, CascadeType.MERGE/*, CascadeType.REMOVE*/
+            }
     )
     @Singular
     private List<Coupon> coupons = new ArrayList<>();
