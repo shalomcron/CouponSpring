@@ -26,7 +26,7 @@ public class Company {
     @OneToMany(
             mappedBy = "company",
             cascade = {
-                    CascadeType.PERSIST, CascadeType.MERGE/*, CascadeType.REMOVE*/
+                    CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE
             }
     )
     @Singular
