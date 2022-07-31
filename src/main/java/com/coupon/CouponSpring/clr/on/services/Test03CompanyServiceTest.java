@@ -40,7 +40,6 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         updateExistsCouponIdTest(1, 777);
         updateExistsCouponCompanyTest(1, 555);
         Print.printMainCaption("Start delete Coupon Test");
-        deleteCouponTest(1);
         Print.printMainCaption("Start get All Coupons Test");
         getAllCouponsTest();
         Print.printMainCaption("Start get All Category Coupons Test");
@@ -69,15 +68,6 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         Company company = companyTaraService.getCompanyDetails();
         Print.printSubCaption("print all companies for comppany:" + company.getId() + "-" + company.getName());
         companyTaraService.getAllCoupons().forEach(System.out::println);
-    }
-
-    private void deleteCouponTest(int couponId) {
-        try {
-            companyTaraService.deleteCoupon(couponId);
-            Print.printSubCaption("successfully delete coupon company with id : " + couponId);
-        } catch (Exception e) {
-            Print.printException("fail in update Coupon", e);
-        }
     }
 
     private void updateExistsCouponCompanyTest(int couponId, int changedCompanyId) {

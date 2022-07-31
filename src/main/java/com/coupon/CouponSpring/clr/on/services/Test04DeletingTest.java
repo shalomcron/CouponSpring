@@ -49,7 +49,7 @@ public class Test04DeletingTest implements CommandLineRunner {
     private void companyDeleteCouponTest(int couponId) {
         try {
             companyTaraService.deleteCoupon(couponId);
-            Print.printSubCaption("company TARA has deleted coupon successfully:" + couponId);
+            Print.printSubCaption("company TARA has deleted coupon " + couponId + " successfully");
         } catch (Exception e) {
             Print.printException("company fail to log-in", e);
         }
