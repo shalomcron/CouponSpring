@@ -36,7 +36,7 @@ public class Coupon {
     private String image;
 
 
-    @ManyToMany(mappedBy = "coupons")
+    @ManyToMany(mappedBy = "coupons", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     @JsonIgnore
     private Set<Customer> customers = new HashSet<>();
