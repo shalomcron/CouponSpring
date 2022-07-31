@@ -59,9 +59,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 
     @Override
     public void deleteCoupon(int couponId) {
-        // TODO: 01 delete customers coupon
-        // couponRepository.deleteById(couponId);
-        // companyRepository.deleteCoupon();
+        couponRepository.deleteById(couponId);
     }
 
     @Override

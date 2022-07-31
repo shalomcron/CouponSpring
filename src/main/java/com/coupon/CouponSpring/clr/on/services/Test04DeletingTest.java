@@ -24,11 +24,11 @@ public class Test04DeletingTest implements CommandLineRunner {
         Print.printMainCaption("Start Test04DeletingTest");
         Print.printMainCaption("Start admin log-in");
         adminLogin();
-        adminDeleteCompanyTest(2);
-        Print.printMainCaption("Start company log-in");
-        companyTaraLogin();
-        Print.printMainCaption("Start company Delete Coupon Test");
-        companyDeleteCouponTest(1);
+//        adminDeleteCompanyTest(2);
+//        Print.printMainCaption("Start company log-in");
+//        companyTaraLogin();
+//        Print.printMainCaption("Start company Delete Coupon Test");
+//        companyDeleteCouponTest(1);
     }
 
     private void adminDeleteCompanyTest(int companyId) {
@@ -51,7 +51,7 @@ public class Test04DeletingTest implements CommandLineRunner {
             companyTaraService.deleteCoupon(couponId);
             Print.printSubCaption("company TARA has deleted coupon " + couponId + " successfully");
         } catch (Exception e) {
-            Print.printException("company fail to log-in", e);
+            Print.printException("company TARA fail to deleted coupon " + couponId, e);
         }
     }
 
