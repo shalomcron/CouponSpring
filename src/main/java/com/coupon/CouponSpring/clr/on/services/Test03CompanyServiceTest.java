@@ -34,11 +34,11 @@ public class Test03CompanyServiceTest implements CommandLineRunner {
         addCouponsTest();
         Print.printMainCaption("Start add Coupons Same Title SameCompany Test");
         addCouponsSameTitleSameCompanyTest();
-        Print.printMainCaption("Start update Coupon Test");
-        updateExistsCouponTest(1);
-        updateExistsCouponTest(2);
-        updateExistsCouponIdTest(1, 777);
-        updateExistsCouponCompanyTest(1, 555);
+//        Print.printMainCaption("Start update Coupon Test");
+//        updateExistsCouponTest(1);
+//        updateExistsCouponTest(2);
+//        updateExistsCouponIdTest(1, 777);
+//        updateExistsCouponCompanyTest(1, 555);
         Print.printMainCaption("Start delete Coupon Test");
         Print.printMainCaption("Start get All Coupons Test");
         getAllCouponsTest();
