@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -27,14 +27,7 @@ public class Customer {
     @Column(length = 30, nullable = false)
     private String password;
 
-    @ManyToMany(
-            cascade={CascadeType.ALL}
-    )
-    @JoinTable(
-            name = "customer_coupons",
-            joinColumns = { @JoinColumn(name = "customer_id") },
-            inverseJoinColumns = { @JoinColumn(name = "coupon_id") }
-    )
     @Singular
-     private List<Coupon> coupons = new ArrayList<>();
+    @ManyToMany()
+    private List<Coupon> coupons = new ArrayList<>();
 }

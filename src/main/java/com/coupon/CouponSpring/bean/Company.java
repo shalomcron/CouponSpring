@@ -23,13 +23,10 @@ public class Company {
     @Column(length = 30, nullable = false)
     private String password;
 
-    @OneToMany(
-            mappedBy = "company",
-            cascade = {
-                    CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE
-            }
-    )
     @Singular
+    @OneToMany(
+            mappedBy = "company"
+    )
     private List<Coupon> coupons = new ArrayList<>();
 
 }
