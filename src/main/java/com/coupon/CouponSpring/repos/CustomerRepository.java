@@ -9,17 +9,26 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    boolean existsByEmailAndPassword(String email, String password);
 
-    boolean existsByEmail(String email);
+ Optional<Customer> findByEmailAndPassword(String email, String password);
 
-    Optional<Customer> findByEmailAndPassword(String email, String password);
+ boolean existsByEmailAndPassword(String email, String password);
 
-    @Modifying
-    @Transactional
-    @Query(
-            value = "INSERT INTO `coupons-using-spring`.`customer_coupons` (`customer_id`, `coupon_id`) VALUES (?1, ?2)",
-            nativeQuery = true
-    )
-    void purchaseCoupon(int customerId, int couponId);
+ boolean existsByEmail(String email);
+
 }
+
+
+/**
+
+
+
+ @Modifying
+ @Transactional
+ @Query(
+ value = "INSERT INTO `coupons-using-spring`.`customer_coupons` (`customer_id`, `coupon_id`) VALUES (?1, ?2)",
+ nativeQuery = true
+ )
+ void purchaseCoupon(int customerId, int couponId);
+ *
+ */

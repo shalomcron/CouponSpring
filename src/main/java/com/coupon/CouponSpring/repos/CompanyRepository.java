@@ -8,12 +8,20 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
+
+    Optional<Company> findByEmailAndPassword(String email, String password);
+
+    boolean existsByEmail(String name);
+
     boolean existsByEmailAndPassword(String email, String password);
 
     boolean existsByName(String name);
 
-    boolean existsByEmail(String name);
-
-    Optional<Company> findByEmailAndPassword(String email, String password);
-
 }
+
+/**
+
+
+
+ *
+ */

@@ -1,12 +1,8 @@
-package com.coupon.CouponSpring.repos;
+package com.coupon.CouponSpring.clr;
 
-import com.coupon.CouponSpring.bean.Company;
-import com.coupon.CouponSpring.bean.Customer;
 import com.coupon.CouponSpring.services.clients.AdminService;
-import com.coupon.CouponSpring.services.clients.CompanyException;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginManager;
-import com.coupon.CouponSpring.utils.BeanFactoryUtils;
 import com.coupon.CouponSpring.utils.Print;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
