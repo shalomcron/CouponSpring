@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Order(3)
 public class Test04CustomerServiceTest implements CommandLineRunner {
     private CustomerService customerShalomService = null;
+    private CustomerService customerYossiService = null;
 
     @Autowired
     private LoginManager loginManager;
@@ -23,6 +24,7 @@ public class Test04CustomerServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start Customer test");
         Print.printMainCaption("Start Customer login Tests");
         loginCustomerShalomTests();
+        loginCustomerYossiTests();
         Print.printMainCaption("Start purchase Coupon Test");
         purchaseCouponTest(1);
         purchaseCouponTest(2);
@@ -57,10 +59,21 @@ public class Test04CustomerServiceTest implements CommandLineRunner {
             Print.printException("fail to log-in", e);
         }
         try {
-            customerShalomService = (CustomerService) loginManager.login("Shalom-mail@gmail.com", "Shalom-password", ClientType.Customer);
-            Print.printSubCaption("log-in Customer successfully");
+            customerShalomService = (CustomerService) loginManager
+                    .login("Shalom-mail@gmail.com", "Shalom-password", ClientType.Customer);
+            Print.printSubCaption("log-in Shalom Customer successfully");
         } catch (Exception e) {
-            Print.printException("fail to log-in", e);
+            Print.printException("fail to Shalom log-in", e);
+        }
+    }
+
+    private void loginCustomerYossiTests() {
+        try {
+            customerShalomService = (CustomerService) loginManager
+                    .login("Yossi-mail@gmail.com", "Yossi-password", ClientType.Customer);
+            Print.printSubCaption("log-in Yossi Customer successfully");
+        } catch (Exception e) {
+            Print.printException("fail to Yossi log-in", e);
         }
     }
 

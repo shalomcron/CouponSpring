@@ -67,11 +67,11 @@ public class Test02AdminServiceTest implements CommandLineRunner {
     private void customerTests() {
         Print.printSubCaption("Add Customer Tests");
         addCustomer("Shalom");
-        addCustomer("Tossi");
         addCustomer("Nissim");
         addCustomer("Yael");
         addCustomer("TO-DELETE-5");
         addCustomer("TO-UPDATE-6");
+        addCustomer("Yossi");
         addExistCustomer();
         geSingleCustomer(1);
         updateCustomerTest();
