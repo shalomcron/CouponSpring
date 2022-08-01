@@ -2,14 +2,10 @@ package com.coupon.CouponSpring.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.mapping.Array;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "coupons")
@@ -41,6 +37,11 @@ public class Coupon {
     @ToString.Exclude
     @JsonIgnore
     @Singular
-    @ManyToMany(mappedBy = "coupons")
-    private List<Coupon> customers = new ArrayList<>();
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "customers_vs_coupons",
+            joinColumns = { @JoinColumn(name = "customer_id") },
+            inverseJoinColumns = { @JoinColumn(name = "coupon_id") }
+    )
+    List<Coupon> customers = new ArrayList<>();
 }
