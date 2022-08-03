@@ -9,6 +9,5 @@ public interface CustomerService {
 
     void purchaseCoupon(int couponId) throws CouponException;
 
-
     Customer getCustomerDetails();
 }

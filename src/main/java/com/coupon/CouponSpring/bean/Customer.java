@@ -26,6 +26,6 @@ public class Customer {
     private String password;
 
     @Singular
-    @ManyToMany(mappedBy = "customers")
+    @ManyToMany(mappedBy = "customers", cascade = {CascadeType.ALL})
     private List<Coupon> coupons = new ArrayList<>();
 }

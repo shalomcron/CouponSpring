@@ -22,11 +22,17 @@ public class Test01AdminServiceTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printMainCaption("Start admin service test");
+        Print.printMainCaption("\n Start admin service test");
         loginTests();
         Print.printMainCaption("Start add Companies Test");
         addCompaniesTest();
-        // addCustomersTest
+        Print.printMainCaption("Start add Customers Test");
+        addCustomersTest();
+    }
+
+    private void addCustomersTest() {
+        addCustomer("Customer-1");
+        addCustomer("Customer-2");
     }
 
     private void addCompaniesTest() {
@@ -62,6 +68,15 @@ public class Test01AdminServiceTest implements CommandLineRunner {
         }
     }
 
+
+    private void addCustomer(String name) {
+        try {
+            adminService.addCustomer(BeanFactoryUtils.getCustomer(name));
+            Print.printSubCaption("successfully add customer " + name);
+        } catch (Exception e) {
+            Print.printException("add customer", e);
+        }
+    }
 }
 
 

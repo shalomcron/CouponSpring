@@ -27,7 +27,7 @@ public class Test02CompanyServiceTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printMainCaption("Start Company Service Test");
+        Print.printMainCaption("\n Start Company Service Test");
         loginTests();
         Print.printMainCaption("Start add Teva Coupons ");
         addCouponsTest("Teva", companyTeva);
@@ -41,10 +41,10 @@ public class Test02CompanyServiceTest implements CommandLineRunner {
             companyService.addCoupon(coupon1);
             Print.printSubCaption("successfully add coupon with title : " + coupon1.getTitle());
             Coupon coupon2 = BeanFactoryUtils.getCoupon(title + "2", 2, 222.45, Category.Vacation, 1);
-            companyTeva.addCoupon(coupon2);
+            companyService.addCoupon(coupon2);
             Print.printSubCaption("successfully add coupon with title : " + coupon2.getTitle());
             Coupon coupon3 = BeanFactoryUtils.getCoupon(title + "3", 3, 333.45, Category.Vacation, 1);
-            companyTeva.addCoupon(coupon3);
+            companyService.addCoupon(coupon3);
             Print.printSubCaption("successfully add coupon with title : " + coupon3.getTitle());
         } catch (Exception e) {
             Print.printException("Teva fail in add Coupon", e);

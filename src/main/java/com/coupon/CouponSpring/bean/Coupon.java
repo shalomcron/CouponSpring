@@ -37,11 +37,11 @@ public class Coupon {
     @ToString.Exclude
     @JsonIgnore
     @Singular
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany()
     @JoinTable(
             name = "customers_vs_coupons",
-            joinColumns = { @JoinColumn(name = "customer_id") },
-            inverseJoinColumns = { @JoinColumn(name = "coupon_id") }
+            joinColumns = { @JoinColumn(name = "coupon_id") },
+            inverseJoinColumns = { @JoinColumn(name = "customer_id") }
     )
-    List<Coupon> customers = new ArrayList<>();
+    List<Customer> customers = new ArrayList<>();
 }
