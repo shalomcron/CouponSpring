@@ -4,6 +4,7 @@ import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
 import com.coupon.CouponSpring.services.clients.AdminService;
+import com.coupon.CouponSpring.services.clients.ClientService;
 import com.coupon.CouponSpring.services.clients.CompanyException;
 import com.coupon.CouponSpring.services.clients.CompanyService;
 import com.coupon.CouponSpring.services.login.ClientType;
@@ -29,18 +30,20 @@ public class Test02CompanyServiceTest implements CommandLineRunner {
         Print.printMainCaption("Start Company Service Test");
         loginTests();
         Print.printMainCaption("Start add Teva Coupons ");
-        addTevaCouponsTest();
+        addCouponsTest("Teva", companyTeva);
+        Print.printMainCaption("Start add Fox Coupons ");
+        addCouponsTest("Fox", companyFox);
     }
 
-    private void addTevaCouponsTest() {
+    private void addCouponsTest(String title, CompanyService companyService) {
         try {
-            Coupon coupon1 = BeanFactoryUtils.getCoupon("Teva 1", 1, 111.45, Category.Vacation, 1);
-            companyTeva.addCoupon(coupon1);
+            Coupon coupon1 = BeanFactoryUtils.getCoupon(title + "1", 1, 111.45, Category.Vacation, 1);
+            companyService.addCoupon(coupon1);
             Print.printSubCaption("successfully add coupon with title : " + coupon1.getTitle());
-            Coupon coupon2 = BeanFactoryUtils.getCoupon("Teva 2", 2, 222.45, Category.Vacation, 1);
+            Coupon coupon2 = BeanFactoryUtils.getCoupon(title + "2", 2, 222.45, Category.Vacation, 1);
             companyTeva.addCoupon(coupon2);
             Print.printSubCaption("successfully add coupon with title : " + coupon2.getTitle());
-            Coupon coupon3 = BeanFactoryUtils.getCoupon("Teva 3", 3, 333.45, Category.Vacation, 1);
+            Coupon coupon3 = BeanFactoryUtils.getCoupon(title + "3", 3, 333.45, Category.Vacation, 1);
             companyTeva.addCoupon(coupon3);
             Print.printSubCaption("successfully add coupon with title : " + coupon3.getTitle());
         } catch (Exception e) {
