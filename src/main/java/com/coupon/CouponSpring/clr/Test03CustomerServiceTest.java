@@ -41,6 +41,8 @@ public class Test03CustomerServiceTest implements CommandLineRunner {
             Print.printSubCaption(name + " purchased coupon successfully, couponId:" + 2);
             customer.purchaseCoupon(3);
             Print.printSubCaption(name + " purchased coupon successfully, couponId:" + 3);
+            customer.purchaseCoupon(4);
+            Print.printSubCaption(name + " purchased coupon successfully, couponId:" + 4);
         } catch (Exception e) {
             Print.printException("fail to purchase coupon", e);
         }
