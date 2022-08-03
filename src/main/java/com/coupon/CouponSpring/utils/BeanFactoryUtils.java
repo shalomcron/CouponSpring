@@ -22,22 +22,12 @@ public class BeanFactoryUtils {
     }
 
 
-    public static Coupon getCoupon(Company company, int amount, int index, Category category, int endMoth) {
+    public static Coupon getCoupon(String title, int amount, double price, Category category, int endMoth) {
         return Coupon.builder()
-                .company(company)
-                .description(company.getName() + "-" + "desc" + "-" + index)
-                .title(company.getName() + "-" + "title" + "-" + index)
-                .amount(amount)
-                .category(category)
-                .startDate(Date.valueOf(LocalDate.now()))
-                .endDate(Date.valueOf(LocalDate.now().plus(endMoth, ChronoUnit.MONTHS)))
-                .build();
-    }
-    public static Coupon getCoupon(String title, int amount, Category category, int endMoth) {
-        return Coupon.builder()
+                .title(title)
                 .description(title + "-" + "desc")
-                .title(title + "-" + "title")
                 .amount(amount)
+                .price(price)
                 .category(category)
                 .startDate(Date.valueOf(LocalDate.now()))
                 .endDate(Date.valueOf(LocalDate.now().plus(endMoth, ChronoUnit.MONTHS)))

@@ -25,7 +25,8 @@ public class Company {
 
     @Singular
     @OneToMany(
-            mappedBy = "company"
+            mappedBy = "company",
+            cascade = { CascadeType.ALL }
     )
     private List<Coupon> coupons = new ArrayList<>();
 
