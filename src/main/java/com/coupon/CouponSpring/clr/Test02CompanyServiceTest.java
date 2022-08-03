@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class Test02CompanyServiceTest implements CommandLineRunner {
-    private CompanyService companyTeva = null;
-    private CompanyService companyFox = null;
+    private static CompanyService companyTeva = null;
+    private static CompanyService companyFox = null;
 
     @Autowired
     private LoginManager loginManager;
@@ -69,6 +69,13 @@ public class Test02CompanyServiceTest implements CommandLineRunner {
         }
     }
 
+    public static CompanyService getCompanyTeva() {
+        return companyTeva;
+    }
+
+    public static CompanyService getCompanyFox() {
+        return companyFox;
+    }
 }
 
 

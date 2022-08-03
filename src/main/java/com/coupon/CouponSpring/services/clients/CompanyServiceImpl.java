@@ -50,7 +50,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 
     @Override
     public void deleteCoupon(int couponId) {
-
+        couponRepository.deleteById(couponId);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 
     @Override
     public Company getCompanyDetails() {
-        return null;
+        return company;
     }
 
 }
