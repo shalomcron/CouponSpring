@@ -15,7 +15,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class Test01AdminServiceTest implements CommandLineRunner {
-    AdminService adminService = null;
+
+    private static AdminService adminService = null;
 
     @Autowired
     private LoginManager loginManager;
@@ -77,6 +78,11 @@ public class Test01AdminServiceTest implements CommandLineRunner {
             Print.printException("add customer", e);
         }
     }
+
+    public static AdminService getAdminService() {
+        return adminService;
+    }
 }
+
 
 
