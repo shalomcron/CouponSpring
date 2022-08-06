@@ -25,19 +25,26 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
     }
 
     @Override
-    public void purchaseCoupon(int couponId) throws CouponException, CustomerException, CouponPurchaseException {
+    public void purchaseCoupon(int couponId) throws CouponException, CouponPurchaseException {
         Coupon coupon = couponRepository.findById(couponId).orElseThrow(() ->
                 new CouponException(CouponMsg.COUPON_ID_NO_EXISTS, String.valueOf(couponId))
         );
-
         Customer customerToUpdate = getCustomerDetails();
+
         if (customerToUpdate.getCoupons().contains(coupon)) {
             throw new CouponPurchaseException(CouponPurchaseMsg.COUPON_WAS_PURCHASED_BY_USER,
-                    coupon.getId() + "(" + coupon.getTitle() + ")");
+                    customerToUpdate.getId() + "(" + coupon.getId() + "-" + coupon.getTitle() + ")");
         }
+
+        if (coupon.getAmount() == 0) {
+            throw new CouponPurchaseException(CouponPurchaseMsg.COUPON_AMOUNT_IS_ZERO,
+                    customerToUpdate.getId() + "(" + coupon.getId() + "-" + coupon.getTitle() + ")");
+        }
+
         customerToUpdate.getCoupons().add(coupon);
         coupon.getCustomers().add(customerToUpdate);
         customerRepository.save(customerToUpdate);
+        couponRepository.decreaseAmount(couponId);
     }
 
     @Override

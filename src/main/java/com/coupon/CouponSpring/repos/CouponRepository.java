@@ -4,13 +4,24 @@ import com.coupon.CouponSpring.bean.Category;
 import com.coupon.CouponSpring.bean.Company;
 import com.coupon.CouponSpring.bean.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
 public interface CouponRepository extends JpaRepository<Coupon, Integer> {
     boolean existsByTitleAndCompany(String title, Company company);
+
+
+    @Modifying
+    @Transactional
+    @Query(
+            value = "UPDATE `coupons-using-spring`.`coupons` SET `amount` = `amount` -1 WHERE (`id` = ?1);",
+            nativeQuery = true
+    )
+    void decreaseAmount(int couponId);
 }
 
 /**
