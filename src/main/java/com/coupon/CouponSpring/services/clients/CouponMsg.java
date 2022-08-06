@@ -5,6 +5,7 @@ public enum CouponMsg {
     COUPON_TITLE_EXIST_SAME_COMPANY("cannot add coupon with exist name for same company"),
     COUPON_ID_CANNOT_BE_CHANGED("cannot update coupon id"),
     COUPON_COMPANY_ID_CANNOT_BE_CHANGED("cannot update coupon company id");
+
     public String getMsg() {
         return msg;
     }

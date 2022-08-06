@@ -2,6 +2,8 @@ package com.coupon.CouponSpring.controllers;
 
 import com.coupon.CouponSpring.bean.Coupon;
 import com.coupon.CouponSpring.bean.Customer;
+import com.coupon.CouponSpring.services.clients.CouponException;
+import com.coupon.CouponSpring.services.clients.CouponPurchaseException;
 import com.coupon.CouponSpring.services.clients.CustomerException;
 import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.services.login.ClientType;
@@ -43,6 +45,14 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getCustomerCoupons(@PathVariable int id) throws CustomerException {
         return couponSession.getCustomer(id).getCustomerDetails().getCoupons();
+    }
+
+    @PostMapping("{customerId}/coupons/{couponId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String purchaseCoupon(@PathVariable int customerId, @PathVariable int couponId)
+            throws CustomerException, CouponPurchaseException, CouponException {
+        couponSession.getCustomer(customerId).purchaseCoupon(couponId);
+        return "OK";
     }
 
 
