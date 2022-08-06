@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 @Order(4)
 public class Test05AdminDeleteCompanyTest implements CommandLineRunner {
     private CompanyService companyTeva = null;
@@ -21,7 +21,7 @@ public class Test05AdminDeleteCompanyTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Print.printMainCaption("\n Start Admin Delete Company Test -"
+        Print.printMainCaption("Start Admin Delete Company Test -"
                 + "(Will delete purchased coupons from customers_vs_coupons table)"
         );
         adminService = Test01AdminServiceTest.getAdminService();
@@ -31,6 +31,7 @@ public class Test05AdminDeleteCompanyTest implements CommandLineRunner {
         Print.printMainCaption("Start delete Companies Test");
         deleteCompanyTest(companyTeva);
         deleteCompanyTest(companyFox);
+        Print.printMainCaption("Start Admin Delete Company Test");
     }
 
     private void deleteCompanyTest(CompanyService companyTeva) {

@@ -23,12 +23,13 @@ public class Test01AdminServiceTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printMainCaption("\n Start admin service test");
+        Print.printMainCaption("Start admin service test");
         loginTests();
         Print.printMainCaption("Start add Companies Test");
         addCompaniesTest();
         Print.printMainCaption("Start add Customers Test");
         addCustomersTest();
+        Print.printMainCaption("END admin service test");
     }
 
     private void addCustomersTest() {

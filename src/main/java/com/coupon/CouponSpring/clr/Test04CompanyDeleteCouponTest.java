@@ -10,7 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 @Order(4)
 public class Test04CompanyDeleteCouponTest implements CommandLineRunner {
     private CompanyService companyTeva = null;
@@ -21,7 +21,7 @@ public class Test04CompanyDeleteCouponTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Print.printMainCaption("\n Start Company Delete Coupon Test -" +
+        Print.printMainCaption("Start Company Delete Coupon Test -" +
                 "(Will delete purchased coupons from customers_vs_coupons table)");
         companyTeva = Test02CompanyServiceTest.getCompanyTeva();
         companyFox = Test02CompanyServiceTest.getCompanyFox();
@@ -29,6 +29,7 @@ public class Test04CompanyDeleteCouponTest implements CommandLineRunner {
         Print.printMainCaption("Start delete Coupon Test");
         deleteCouponTest(companyTeva, 1);
         deleteCouponTest(companyFox, 3);
+        Print.printMainCaption("End Company Delete Coupon Test");
     }
 
     private void deleteCouponTest(CompanyService company, int couponId) {

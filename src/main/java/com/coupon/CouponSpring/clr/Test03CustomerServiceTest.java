@@ -24,12 +24,13 @@ public class Test03CustomerServiceTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printMainCaption("\n Start Customer Service Test");
+        Print.printMainCaption("Start Customer Service Test");
         loginTests1();
         loginTests2();
         Print.printMainCaption("Start purchase Coupons Test");
         purchaseCouponsTest(customer1);
         purchaseCouponsTest(customer2);
+        Print.printMainCaption("End Customer Service Test");
     }
 
     private void purchaseCouponsTest(CustomerService customer) {

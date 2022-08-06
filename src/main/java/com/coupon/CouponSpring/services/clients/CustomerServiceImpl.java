@@ -33,8 +33,6 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
         customerUpdate.getCoupons().add(coupon);
         coupon.getCustomers().add(customerUpdate);
         customerRepository.save(customerUpdate);
-        // customerRepository.purchaseCoupon(this.customer.getId(), couponId);
-        // customerRepository.
     }
 
     @Override

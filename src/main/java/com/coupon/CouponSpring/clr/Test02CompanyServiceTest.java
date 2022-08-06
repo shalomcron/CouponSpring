@@ -27,12 +27,13 @@ public class Test02CompanyServiceTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Print.printMainCaption("\n Start Company Service Test");
+        Print.printMainCaption("Start Company Service Test");
         loginTests();
         Print.printMainCaption("Start add Teva Coupons ");
         addCouponsTest("Teva", companyTeva);
         Print.printMainCaption("Start add Fox Coupons ");
         addCouponsTest("Fox", companyFox);
+        Print.printMainCaption("END Company Service Test");
     }
 
     private void addCouponsTest(String title, CompanyService companyService) {
