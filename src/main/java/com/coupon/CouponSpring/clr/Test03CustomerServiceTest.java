@@ -13,7 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 @Order(3)
 public class Test03CustomerServiceTest implements CommandLineRunner {
     private CustomerService customer1 = null;
