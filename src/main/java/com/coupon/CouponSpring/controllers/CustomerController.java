@@ -1,6 +1,7 @@
 package com.coupon.CouponSpring.controllers;
 
 import com.coupon.CouponSpring.bean.Customer;
+import com.coupon.CouponSpring.services.clients.CustomerException;
 import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginException;
@@ -24,7 +25,6 @@ public class CustomerController {
     public Customer logIn(@RequestParam String email,@RequestParam String password) throws LoginException {
         CustomerService customerService = (CustomerService) loginManager
                 .login(email, password, ClientType.Customer);
-        Print.printSubCaption("customer 1 logged in successfully");
         Customer customer = customerService.getCustomerDetails();
         couponSession.setCustomer(customer.getId(), customerService);
         return customer;
@@ -32,7 +32,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer getCustomerDetails(@PathVariable int id) {
+    public Customer getCustomerDetails(@PathVariable int id) throws CustomerException {
         return couponSession.getCustomer(id).getCustomerDetails();
     }
 
