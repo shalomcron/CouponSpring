@@ -38,13 +38,13 @@ public class Test02CompanyServiceTest implements CommandLineRunner {
 
     private void addCouponsTest(String title, CompanyService companyService) {
         try {
-            Coupon coupon1 = BeanFactoryUtils.getCoupon(title + "1", 1, 111.45, Category.Vacation, 1);
+            Coupon coupon1 = BeanFactoryUtils.getCoupon(title + "-1", 1, 111.45, Category.Vacation, 1);
             companyService.addCoupon(coupon1);
             Print.printSubCaption("successfully add coupon with title : " + coupon1.getTitle());
-            Coupon coupon2 = BeanFactoryUtils.getCoupon(title + "2", 2, 222.45, Category.Vacation, 1);
+            Coupon coupon2 = BeanFactoryUtils.getCoupon(title + "-2", 2, 222.45, Category.Vacation, 1);
             companyService.addCoupon(coupon2);
             Print.printSubCaption("successfully add coupon with title : " + coupon2.getTitle());
-            Coupon coupon3 = BeanFactoryUtils.getCoupon(title + "3", 3, 333.45, Category.Vacation, 1);
+            Coupon coupon3 = BeanFactoryUtils.getCoupon(title + "-3", 3, 333.45, Category.Vacation, 0);
             companyService.addCoupon(coupon3);
             Print.printSubCaption("successfully add coupon with title : " + coupon3.getTitle());
         } catch (Exception e) {

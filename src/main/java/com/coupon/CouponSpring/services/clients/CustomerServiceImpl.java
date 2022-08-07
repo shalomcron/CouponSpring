@@ -6,6 +6,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class CustomerServiceImpl extends ClientService implements CustomerService {
@@ -39,6 +41,12 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
         if (coupon.getAmount() == 0) {
             throw new CouponPurchaseException(CouponPurchaseMsg.COUPON_AMOUNT_IS_ZERO,
                     customerToUpdate.getId() + "(" + coupon.getId() + "-" + coupon.getTitle() + ")");
+        }
+
+
+        if (couponRepository.isExpired(coupon.getId()) == 1) {
+            throw new CouponPurchaseException(CouponPurchaseMsg.COUPON_IS_EXPIRED,
+                    customerToUpdate.getId() + "(" + coupon.getId() + "-" + coupon.getEndDate() + ")");
         }
 
         customerToUpdate.getCoupons().add(coupon);
