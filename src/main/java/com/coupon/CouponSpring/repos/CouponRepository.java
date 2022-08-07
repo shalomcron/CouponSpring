@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface CouponRepository extends JpaRepository<Coupon, Integer> {
     boolean existsByTitleAndCompany(String title, Company company);
@@ -14,7 +15,6 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
             value = "UPDATE `coupons-using-spring`.`coupons` SET `amount` = `amount` -1 WHERE (`id` = ?1);",
             nativeQuery = true
     )
-
     void decreaseAmount(int couponId);
 
     @Query(
@@ -22,6 +22,15 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
             nativeQuery = true
     )
     int isExpired(int id);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM `coupons-using-spring`.coupons AS c \n" +
+                    "INNER JOIN `coupons-using-spring`.customers_vs_coupons AS cvc \n" +
+                    "ON c.id = cvc.coupon_id AND cvc.customer_id = ?1",
+            nativeQuery = true
+    )
+    List<Coupon> findPurchasedCoupons(int customerId);
 }
 
 /**
