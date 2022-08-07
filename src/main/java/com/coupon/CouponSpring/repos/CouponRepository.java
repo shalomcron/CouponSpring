@@ -25,12 +25,6 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
     void decreaseAmount(int couponId);
 
     @Query(
-//            value = "SELECT \n" +
-//                    "IIF('end_date' = 'f', 'Fail', 'Pass') 'Pass/Fail'\n" +
-//                    "FROM `coupons-using-spring`.`coupons`",
-//            value = "SELECT \n" +
-//                    "IF(end_date = '2022-08-07', 'Fail', 'Pass') \n" +
-//                    "FROM `coupons-using-spring`.`coupons` where (`id` = ?1)",
             value = "SELECT IF(end_date > CURDATE(), 0, 1) FROM `coupons-using-spring`.`coupons` where (`id` = ?1)",
             nativeQuery = true
     )
