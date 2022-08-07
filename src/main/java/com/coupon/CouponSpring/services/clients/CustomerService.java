@@ -18,4 +18,5 @@ public interface CustomerService {
 
     List<Coupon> getPurchasedCategoryCoupons(String category);
 
+    List<Coupon> getPurchasedMaxPriceCoupons(double price);
 }

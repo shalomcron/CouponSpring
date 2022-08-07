@@ -40,4 +40,13 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
             nativeQuery = true
     )
     List<Coupon> findPurchasedCategoryCoupons(int customerId, String category);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM `coupons-using-spring`.coupons AS c \n" +
+                    "INNER JOIN `coupons-using-spring`.customers_vs_coupons AS cvc \n" +
+                    "ON c.id = cvc.coupon_id AND cvc.customer_id = ?1 AND c.price <= ?2",
+            nativeQuery = true
+    )
+    List<Coupon> findPurchasedMaxPriceCoupons(int id, double price);
 }

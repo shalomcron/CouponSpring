@@ -52,6 +52,12 @@ public class CustomerController {
         return couponSession.getCustomer(id).getPurchasedCategoryCoupons(category);
     }
 
+    @GetMapping("{id}/coupons/maxPrice")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Coupon> getPurchasedMaxPriceCoupons(@PathVariable int id, @RequestParam double price) throws CustomerException {
+        return couponSession.getCustomer(id).getPurchasedMaxPriceCoupons(price);
+    }
+
     @PostMapping("{customerId}/coupons/{couponId}")
     @ResponseStatus(HttpStatus.CREATED)
     public String purchaseCoupon(@PathVariable int customerId, @PathVariable int couponId)
