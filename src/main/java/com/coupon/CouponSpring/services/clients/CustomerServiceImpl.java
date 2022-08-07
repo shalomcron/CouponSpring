@@ -6,7 +6,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import java.util.List;
 
 @Service
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
@@ -58,5 +58,15 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
     @Override
     public Customer getCustomerDetails() {
         return customerRepository.findById(customer.getId()).orElseThrow();
+    }
+
+    @Override
+    public List<Coupon> getPurchasedCoupons() {
+        return customerRepository.findPurchasedCoupons(customer.getId());
+    }
+
+    @Override
+    public List<Coupon> getPurchasedCategoryCoupons(String category) {
+        return null;
     }
 }

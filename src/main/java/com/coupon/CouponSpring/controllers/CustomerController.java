@@ -10,7 +10,6 @@ import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginException;
 import com.coupon.CouponSpring.services.login.LoginManager;
 import com.coupon.CouponSpring.session.CouponSession;
-import com.coupon.CouponSpring.utils.Print;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -43,8 +42,14 @@ public class CustomerController {
 
     @GetMapping("{id}/coupons")
     @ResponseStatus(HttpStatus.OK)
-    public List<Coupon> getCustomerCoupons(@PathVariable int id) throws CustomerException {
-        return couponSession.getCustomer(id).getCustomerDetails().getCoupons();
+    public List<Coupon> getPurchaseCoupon(@PathVariable int id) throws CustomerException {
+        return couponSession.getCustomer(id).getPurchasedCoupons();
+    }
+
+    @GetMapping("{id}/coupons/category")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Coupon> getPurchaseCouponByCategory(@PathVariable int id, @RequestParam String category) throws CustomerException {
+        return couponSession.getCustomer(id).getPurchasedCategoryCoupons(category);
     }
 
     @PostMapping("{customerId}/coupons/{couponId}")
