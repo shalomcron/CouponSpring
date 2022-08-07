@@ -67,6 +67,6 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
 
     @Override
     public List<Coupon> getPurchasedCategoryCoupons(String category) {
-        return null;
+        return couponRepository.findPurchasedCategoryCoupons(customer.getId(), category);
     }
 }
