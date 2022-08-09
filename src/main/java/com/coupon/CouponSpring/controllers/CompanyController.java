@@ -36,7 +36,7 @@ public class CompanyController {
 
     @DeleteMapping("/{companyId}/delete/{couponId}")
     @ResponseStatus(HttpStatus.OK)
-    public String companyDeleteCoupon(@PathVariable int companyId, @PathVariable int couponId) throws CompanyException {
+    public String companyDeleteCoupon(@PathVariable int companyId, @PathVariable int couponId) throws Exception {
         clientsSession.getCompanySession(companyId).deleteCoupon(couponId);
         return "Coupon " + couponId + " deleted";
     }

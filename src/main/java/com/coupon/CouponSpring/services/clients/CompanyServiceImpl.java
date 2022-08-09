@@ -49,9 +49,15 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
     }
 
     @Override
-    public void deleteCoupon(int couponId) {
+    public void deleteCoupon(int couponId) throws Exception {
+        Coupon coupon = couponRepository.findById(couponId).orElseThrow(
+                () -> new CouponException(CouponMsg.COUPON_ID_NO_EXISTS, String.valueOf(couponId)));
+
+        if (coupon.getCompany().getId() != company.getId()) {
+            throw new CompanyException(CompanyMsg.COMPANY_CANNO_DELETE_OTHER_COMPANY_COUPON,
+                    company.getId() + "-" + coupon.getCompany().getId());
+        }
         couponRepository.deleteById(couponId);
-        // couponRepository.flush();
     }
 
     @Override

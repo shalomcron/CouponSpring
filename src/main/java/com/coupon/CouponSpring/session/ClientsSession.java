@@ -23,11 +23,11 @@ public class ClientsSession {
     }
 
     public void setCompanySession(int id, CompanyService companyService) {
-        sessions.put(ClientType.Customer.name() + "-" + id, (ClientService) companyService);
+        sessions.put(ClientType.Company.name() + "-" + id, (ClientService) companyService);
     }
 
     public CompanyService getCompanySession(int id) throws CompanyException {
-        CompanyService companyService = (CompanyService) sessions.get(ClientType.Customer.name() + "-" + id);
+        CompanyService companyService = (CompanyService) sessions.get(ClientType.Company.name() + "-" + id);
         if (companyService == null) {
             throw new CompanyException(CompanyMsg.COMPANY_SESSION_NOT_FOUND, String.valueOf(id));
         }

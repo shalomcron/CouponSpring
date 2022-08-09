@@ -33,9 +33,13 @@ public class Test04CompanyDeleteCouponTest implements CommandLineRunner {
     }
 
     private void deleteCouponTest(CompanyService company, int couponId) {
-        String name = company.getCompanyDetails().getName();
-        company.deleteCoupon(couponId);
-        Print.printSubCaption(name + "  deleted coupon successfully, couponId:" + couponId);
+        try {
+            String name = company.getCompanyDetails().getName();
+            company.deleteCoupon(couponId);
+            Print.printSubCaption(name + "  deleted coupon successfully, couponId:" + couponId);
+        } catch (Exception e) {
+            Print.printException("EX IN deleteCouponTest", e);
+        }
     }
 }
 
