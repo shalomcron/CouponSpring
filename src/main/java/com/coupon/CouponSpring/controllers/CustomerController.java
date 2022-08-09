@@ -9,7 +9,7 @@ import com.coupon.CouponSpring.services.clients.CustomerService;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginException;
 import com.coupon.CouponSpring.services.login.LoginManager;
-import com.coupon.CouponSpring.session.CouponSession;
+import com.coupon.CouponSpring.session.ClientsSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("api/customers")
 public class CustomerController {
     @Autowired
-    CouponSession couponSession;
+    ClientsSession clientsSession;
     @Autowired
     private LoginManager loginManager;
 
@@ -30,39 +30,39 @@ public class CustomerController {
         CustomerService customerService = (CustomerService) loginManager
                 .login(email, password, ClientType.Customer);
         Customer customer = customerService.getCustomerDetails();
-        couponSession.setCustomer(customer.getId(), customerService);
+        clientsSession.setCustomer(customer.getId(), customerService);
         return customer;
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Customer getCustomerDetails(@PathVariable int id) throws CustomerException {
-        return couponSession.getCustomerSession(id).getCustomerDetails();
+        return clientsSession.getCustomerSession(id).getCustomerDetails();
     }
 
     @GetMapping("{id}/coupons")
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getPurchaseCoupon(@PathVariable int id) throws CustomerException {
-        return couponSession.getCustomerSession(id).getPurchasedCoupons();
+        return clientsSession.getCustomerSession(id).getPurchasedCoupons();
     }
 
     @GetMapping("{id}/coupons/category")
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getPurchaseCouponByCategory(@PathVariable int id, @RequestParam String category) throws CustomerException {
-        return couponSession.getCustomerSession(id).getPurchasedCategoryCoupons(category);
+        return clientsSession.getCustomerSession(id).getPurchasedCategoryCoupons(category);
     }
 
     @GetMapping("{id}/coupons/maxPrice")
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getPurchasedMaxPriceCoupons(@PathVariable int id, @RequestParam double price) throws CustomerException {
-        return couponSession.getCustomerSession(id).getPurchasedMaxPriceCoupons(price);
+        return clientsSession.getCustomerSession(id).getPurchasedMaxPriceCoupons(price);
     }
 
     @PostMapping("{customerId}/coupons/{couponId}")
     @ResponseStatus(HttpStatus.CREATED)
     public String purchaseCoupon(@PathVariable int customerId, @PathVariable int couponId)
             throws CustomerException, CouponPurchaseException, CouponException {
-        couponSession.getCustomerSession(customerId).purchaseCoupon(couponId);
+        clientsSession.getCustomerSession(customerId).purchaseCoupon(couponId);
         return "OK";
     }
 

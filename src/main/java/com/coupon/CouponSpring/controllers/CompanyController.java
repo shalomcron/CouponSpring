@@ -1,24 +1,20 @@
 package com.coupon.CouponSpring.controllers;
 
 import com.coupon.CouponSpring.bean.Company;
-import com.coupon.CouponSpring.bean.Coupon;
-import com.coupon.CouponSpring.bean.Customer;
 import com.coupon.CouponSpring.services.clients.*;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginException;
 import com.coupon.CouponSpring.services.login.LoginManager;
-import com.coupon.CouponSpring.session.CouponSession;
+import com.coupon.CouponSpring.session.ClientsSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("api/companies")
 public class CompanyController {
     @Autowired
-    CouponSession couponSession;
+    ClientsSession clientsSession;
     @Autowired
     private LoginManager loginManager;
 
@@ -28,15 +24,23 @@ public class CompanyController {
         CompanyService companyService = (CompanyService) loginManager
                 .login(email, password, ClientType.Company);
         Company company = companyService.getCompanyDetails();
-        couponSession.setCompanySession(company.getId(), companyService);
+        clientsSession.setCompanySession(company.getId(), companyService);
         return company;
     }
 
-//    @GetMapping("/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Customer getCustomerDetails(@PathVariable int id) throws CustomerException {
-//        return couponSession.getCustomer(id).getCustomerDetails();
-//    }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Company getCompanyDetails(@PathVariable int id) throws CompanyException {
+        return clientsSession.getCompanySession(id).getCompanyDetails();
+    }
+
+    @DeleteMapping("/{companyId}/delete/{couponId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String companyDeleteCoupon(@PathVariable int companyId, @PathVariable int couponId) throws CompanyException {
+        clientsSession.getCompanySession(companyId).deleteCoupon(couponId);
+        return "Coupon " + couponId + " deleted";
+    }
+
 //
 //    @GetMapping("{id}/coupons")
 //    @ResponseStatus(HttpStatus.OK)

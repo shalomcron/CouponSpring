@@ -51,6 +51,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
     @Override
     public void deleteCoupon(int couponId) {
         couponRepository.deleteById(couponId);
+        // couponRepository.flush();
     }
 
     @Override
@@ -70,7 +71,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 
     @Override
     public Company getCompanyDetails() {
-        return company;
+        return companyRepository.findById(company.getId()).orElseThrow();
     }
 
 }
