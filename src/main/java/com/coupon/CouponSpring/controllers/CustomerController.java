@@ -24,7 +24,7 @@ public class CustomerController {
     @Autowired
     private LoginManager loginManager;
 
-    @PostMapping
+    @PostMapping("login")
     @ResponseStatus(HttpStatus.CREATED)
     public Customer logIn(@RequestParam String email,@RequestParam String password) throws LoginException {
         CustomerService customerService = (CustomerService) loginManager
@@ -37,32 +37,32 @@ public class CustomerController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Customer getCustomerDetails(@PathVariable int id) throws CustomerException {
-        return couponSession.getCustomer(id).getCustomerDetails();
+        return couponSession.getCustomerSession(id).getCustomerDetails();
     }
 
     @GetMapping("{id}/coupons")
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getPurchaseCoupon(@PathVariable int id) throws CustomerException {
-        return couponSession.getCustomer(id).getPurchasedCoupons();
+        return couponSession.getCustomerSession(id).getPurchasedCoupons();
     }
 
     @GetMapping("{id}/coupons/category")
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getPurchaseCouponByCategory(@PathVariable int id, @RequestParam String category) throws CustomerException {
-        return couponSession.getCustomer(id).getPurchasedCategoryCoupons(category);
+        return couponSession.getCustomerSession(id).getPurchasedCategoryCoupons(category);
     }
 
     @GetMapping("{id}/coupons/maxPrice")
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getPurchasedMaxPriceCoupons(@PathVariable int id, @RequestParam double price) throws CustomerException {
-        return couponSession.getCustomer(id).getPurchasedMaxPriceCoupons(price);
+        return couponSession.getCustomerSession(id).getPurchasedMaxPriceCoupons(price);
     }
 
     @PostMapping("{customerId}/coupons/{couponId}")
     @ResponseStatus(HttpStatus.CREATED)
     public String purchaseCoupon(@PathVariable int customerId, @PathVariable int couponId)
             throws CustomerException, CouponPurchaseException, CouponException {
-        couponSession.getCustomer(customerId).purchaseCoupon(couponId);
+        couponSession.getCustomerSession(customerId).purchaseCoupon(couponId);
         return "OK";
     }
 
