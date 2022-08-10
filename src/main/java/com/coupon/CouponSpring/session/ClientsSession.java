@@ -33,4 +33,16 @@ public class ClientsSession {
         }
         return companyService;
     }
+
+    public void setAdminSession(String key, AdminService adminService) {
+        sessions.put(key, (ClientService) adminService);
+    }
+
+    public AdminService getAdminSession(String key) throws Exception {
+        AdminService adminService = (AdminService) sessions.get(key);
+        if (adminService == null) {
+            throw new Exception("adminService not found");
+        }
+        return adminService;
+    }
 }
