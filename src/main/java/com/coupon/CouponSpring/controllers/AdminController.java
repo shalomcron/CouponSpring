@@ -1,6 +1,7 @@
 package com.coupon.CouponSpring.controllers;
 
 import com.coupon.CouponSpring.bean.Company;
+import com.coupon.CouponSpring.bean.Coupon;
 import com.coupon.CouponSpring.services.clients.AdminService;
 import com.coupon.CouponSpring.services.clients.CompanyException;
 import com.coupon.CouponSpring.services.login.ClientType;
@@ -41,6 +42,13 @@ public class AdminController {
     public String deleteCustomer(@PathVariable int customerId) throws Exception {
         clientsSession.getAdminSession(adminServiceKey).deleteCustomer(customerId);
         return "Customer " + customerId + " deleted";
+    }
+
+    @PostMapping("/addCompany")
+    @ResponseStatus(HttpStatus.OK)
+    public String addCompany(@RequestBody Company company) throws Exception {
+        clientsSession.getAdminSession(adminServiceKey).addCompany(company);
+        return "Coupon " + company.getName() + " added";
     }
 
 
