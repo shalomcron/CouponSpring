@@ -23,4 +23,6 @@ public interface AdminService {
     void deleteCustomer(int customerId);
     List<Customer> getAllCustomers();
     Customer geSingleCustomer(int customerId) throws CustomerException;
+
+    Company getCompany(int companyId) throws CompanyException;
 }

@@ -1,9 +1,8 @@
 package com.coupon.CouponSpring.controllers;
 
 import com.coupon.CouponSpring.bean.Company;
-import com.coupon.CouponSpring.bean.Coupon;
+import com.coupon.CouponSpring.bean.Customer;
 import com.coupon.CouponSpring.services.clients.AdminService;
-import com.coupon.CouponSpring.services.clients.CompanyException;
 import com.coupon.CouponSpring.services.login.ClientType;
 import com.coupon.CouponSpring.services.login.LoginException;
 import com.coupon.CouponSpring.services.login.LoginManager;
@@ -11,6 +10,8 @@ import com.coupon.CouponSpring.session.ClientsSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/admin")
@@ -44,14 +45,39 @@ public class AdminController {
         return "Customer " + customerId + " deleted";
     }
 
+    @PostMapping("/customer")
+    @ResponseStatus(HttpStatus.OK)
+    public String addCustomer(@RequestBody Customer customer) throws Exception {
+        clientsSession.getAdminSession(adminServiceKey).addCustomer(customer);
+        return "Customer " + customer.getFirsName() + " added";
+    }
+
+
     @PostMapping("/addCompany")
     @ResponseStatus(HttpStatus.OK)
     public String addCompany(@RequestBody Company company) throws Exception {
         clientsSession.getAdminSession(adminServiceKey).addCompany(company);
-        return "Coupon " + company.getName() + " added";
+        return "Company " + company.getName() + " added";
     }
 
+    @PutMapping("/updateCompany/{companyId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String updateCompany(@PathVariable int companyId, @RequestBody Company company) throws Exception {
+        clientsSession.getAdminSession(adminServiceKey).updateCompany(companyId ,company);
+        return "Company " + companyId + " updated";
+    }
 
+    @GetMapping("/companies")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Company> getAllCompanies() throws Exception {
+        return clientsSession.getAdminSession(adminServiceKey).getAllCompanies();
+    }
+
+    @GetMapping("/companies/{companyId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Company getCompany(@PathVariable int companyId) throws Exception {
+        return clientsSession.getAdminSession(adminServiceKey).getCompany(companyId);
+    }
 }
 
 

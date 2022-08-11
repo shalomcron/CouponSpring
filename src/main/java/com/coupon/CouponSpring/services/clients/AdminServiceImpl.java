@@ -5,6 +5,7 @@ import com.coupon.CouponSpring.bean.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.CompletionException;
 
 @Service
 public class AdminServiceImpl extends ClientService implements AdminService {
@@ -89,5 +90,11 @@ public class AdminServiceImpl extends ClientService implements AdminService {
     public Customer geSingleCustomer(int customerId) throws CustomerException {
         return customerRepository.findById(customerId)
                 .orElseThrow(() -> new CustomerException(CustomerMsg.CUSTOMER_ID_NOT_EXIST, String.valueOf(customerId)));
+    }
+
+    @Override
+    public Company getCompany(int companyId) throws CompanyException {
+        return companyRepository.findById(companyId)
+                .orElseThrow(() -> new CompanyException(CompanyMsg.COMPANY_NOT_EXIST, String.valueOf(companyId)));
     }
 }
