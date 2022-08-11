@@ -52,6 +52,18 @@ public class AdminController {
         return "Customer " + customer.getFirsName() + " added";
     }
 
+    @GetMapping("/customer/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Customer getCustomer(@PathVariable int customerId) throws Exception {
+        return clientsSession.getAdminSession(adminServiceKey).geSingleCustomer(customerId);
+    }
+
+    @PutMapping("/customer/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String updateCustomer(@PathVariable int customerId, @RequestBody Customer customer) throws Exception {
+        clientsSession.getAdminSession(adminServiceKey).updateCustomer(customerId, customer);
+        return "Customer " + customer.getFirsName() + " updated";
+    }
 
     @PostMapping("/addCompany")
     @ResponseStatus(HttpStatus.OK)
