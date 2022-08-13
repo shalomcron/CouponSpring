@@ -1,4 +1,4 @@
-package com.coupon.CouponSpring.clr;
+package com.coupon.jobs;
 
 import com.coupon.CouponSpring.repos.CouponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
