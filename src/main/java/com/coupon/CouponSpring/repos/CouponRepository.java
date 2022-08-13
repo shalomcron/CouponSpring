@@ -49,4 +49,12 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
             nativeQuery = true
     )
     List<Coupon> findPurchasedMaxPriceCoupons(int id, double price);
+
+    @Modifying
+    @Transactional
+    @Query(
+            value = "DELETE FROM `coupons-using-spring`.`coupons` WHERE end_date <= CURDATE()",
+            nativeQuery = true
+    )
+    void deleteExpiredCoupons();
 }
